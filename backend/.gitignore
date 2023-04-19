@@ -1,0 +1,6 @@
+# Ignore all migration files
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Ignore the database file (assuming you are using SQLite)
+db.sqlite3
