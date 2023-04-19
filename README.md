@@ -4,3 +4,7 @@ Implemented the React frontend for Restify and connect it to the backend server.
 **startup.sh**: This script run all preparation needed for your code to run in a new environment. Including both frontend and backend server
 
 **run.sh**: This script start both the frontend and backend server.
+
+**requirenments.txt**: All required packeges needed to run the backend server.
+
+****
