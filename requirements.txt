@@ -6,4 +6,5 @@ djangorestframework-simplejwt
 django_phonenumber_field  
 phonenumbers   
 Pillow  
-django-rest-swagger  
+django-rest-swagger 
+django-cors-headers

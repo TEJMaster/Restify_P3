@@ -1,7 +1,8 @@
 import React from 'react';
 import './HomePage.css';
-import logo from './images/logo.png'; // Import the logo
-import videoSource from './images/Video.mp4'; // Import the video source
+import { Link } from 'react-router-dom';
+import logo from './images/logo.png'; 
+import videoSource from './images/Video.mp4'; 
 
 const HomePage = () => {
   return (
@@ -14,20 +15,20 @@ const HomePage = () => {
         <img src={logo} className="logo" alt="logo" />
         <ul>
           <li>
-            <a href="home.html">HOME</a>
+            <a href="#">HOME</a>
           </li>
           <li>
-            <a href="signup.html">SIGN UP</a>
+            <Link to="/signup">SIGN UP</Link>
           </li>
           <li>
-            <a href="signin.html">SIGN IN</a>
+            <a href="#">SIGN IN</a>
           </li>
         </ul>
       </nav>
 
       <div className="content">
         <h1>WELCOME</h1>
-        <a href="properties.html">
+        <a href="#">
           <span></span>SEARCH PROPERTIES
         </a>
       </div>
