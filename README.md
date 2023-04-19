@@ -7,4 +7,4 @@ Implemented the React frontend for Restify and connect it to the backend server.
 
 **requirenments.txt**: All required packeges needed to run the backend server.
 
-****
+**package-lock.json**: Ensures that the exact same versions of all installed packages and their dependencies are used when you or someone else installs the project.
