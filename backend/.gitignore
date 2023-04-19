@@ -4,3 +4,9 @@
 
 # Ignore the database file (assuming you are using SQLite)
 db.sqlite3
+
+# Ignore __pycache__ directories and .pyc files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
