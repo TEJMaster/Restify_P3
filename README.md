@@ -1,10 +1,25 @@
-# Restify_P3
-Implemented the React frontend for Restify and connect it to the backend server. The deliverable is a fully-functional website that is shippable, presentable, self-explanatory, smooth, and beautiful.
+# Restify P3 Implementation
 
-**startup.sh**: This script run all preparation needed for your code to run in a new environment. Including both frontend and backend server
+We have implemented a React frontend for Restify and connected it to the backend server. The result is a fully-functional, shippable, and visually appealing website that offers a smooth user experience and is easy to understand.
 
-**run.sh**: This script start both the frontend and backend server.
+## Scripts
 
-**requirenments.txt**: All required packeges needed to run the backend server.
+- **startup.sh**: This script sets up everything required for the code to run in a new environment, including both the frontend and backend servers.
+- **run.sh**: This script initiates the frontend and backend servers.
 
-**package-lock.json**: Ensures that the exact same versions of all installed packages and their dependencies are used when you or someone else installs the project.
+## Files
+
+- **requirements.txt**: Lists all the necessary packages to run the backend server.
+- **package-lock.json**: Ensures that the exact same versions of all installed packages and their dependencies are used when you or someone else installs the project.
+
+## Folders
+
+- **backend**: This folder contains the code for the Django backend server.
+- **frontend**: This folder contains the code for the React frontend server.
+
+## Project Setup
+
+To set up the project on a new machine, follow these steps:
+
+1. Run `startup.sh` to create a new virtual environment for the project and install all required packages.
+2. Run `run.sh` to start both the frontend and backend servers.
