@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SignUpPage.css';
 import logo from './images/blue_merged_logo.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const SignUpPage = () => {
@@ -18,6 +18,8 @@ const SignUpPage = () => {
       password: '',
       password_repeat: '',
     });
+
+    const navigate = useNavigate();
   
     const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -59,63 +61,63 @@ const SignUpPage = () => {
     };
   
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateFormData()) {
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    
+      if (!validateFormData()) {
         return;
       }
     
-    console.log("Submitting form data:", formData);
-
+      console.log("Submitting form data:", formData);
     
-  
-    try {
-      const response = await fetch('http://localhost:8000/account/signup/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        console.log('User created:', data);
-        // Redirect to the homepage or another page after successful registration
-      } else {
-        console.error('Error creating user:', data);
-  
-        // Handle different types of errors
-        if (data.username) {
-          alert(`Username error: ${data.username}`);
+      try {
+        const response = await fetch('http://localhost:8000/account/signup/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+    
+        const data = await response.json();
+    
+        if (response.ok) {
+          console.log('User created:', data);
+          // Redirect to the login page after successful registration
+          navigate('/login');
+        } else {
+          console.error('Error creating user:', data);
+    
+          // Handle different types of errors
+          if (data.username) {
+            alert(`Username error: ${data.username}`);
+          }
+    
+          if (data.email) {
+            alert(`Email error: ${data.email}`);
+          }
+    
+          if (data.password) {
+            alert(`Password error: ${data.password}`);
+          }
+    
+          if (data.password_repeat) {
+            alert(`Password repeat error: ${data.password_repeat}`);
+          }
         }
-  
-        if (data.email) {
-          alert(`Email error: ${data.email}`);
-        }
-  
-        if (data.password) {
-          alert(`Password error: ${data.password}`);
-        }
-  
-        if (data.password_repeat) {
-          alert(`Password repeat error: ${data.password_repeat}`);
-        }
+      } catch (error) {
+        console.error('Error during signup:', error);
       }
-    } catch (error) {
-      console.error('Error during signup:', error);
-    }
-  };
+    };
+    
   
 
   return (
     <div className="container">
       <div className="form-box">
-        <a href="home.html">
-          <img src={logo} alt="logo" className="login_logo" />
-        </a>
+        <Link to="/">
+            <img src={logo} alt="logo" className="login_logo" />
+        </Link>
 
         <h1 id="title">Sign Up</h1>
 

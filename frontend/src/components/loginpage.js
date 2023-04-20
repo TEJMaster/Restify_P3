@@ -17,24 +17,30 @@ function App() {
         username: username,
         password: password,
       });
-
+  
       // Handle successful login
       if (response.status === 200) {
         setError('');
         console.log('Login successful');
+        
+        // Store the access token in localStorage
+        localStorage.setItem('access_token', response.data.access_token);
+  
         // You can redirect to the main page or another route here
       }
     } catch (error) {
       setError('Invalid username or password');
     }
   };
+  
 
   return (
     <div className="container">
       <div className="form-box">
-        <a href="home.html">
-          <img src={logo} alt="logo" className="login_logo" />
-        </a>
+        <Link to="/">
+            <img src={logo} alt="logo" className="login_logo" />
+        </Link>
+
         <h1>Log in</h1>
 
         <form onSubmit={handleLogin}>
