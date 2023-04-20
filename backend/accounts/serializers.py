@@ -4,6 +4,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from .models import CustomUser
+from django.core.files import File
+
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,13 +14,12 @@ class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     first_name = serializers.CharField(max_length=30, required=False)
     last_name = serializers.CharField(max_length=30, required=False)
-    avatar = serializers.ImageField(required=False, allow_null=True)
     phone_number = serializers.CharField(required=False, allow_null=True)
 
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password', 'password_repeat', 'first_name', 'last_name', 'avatar', 'phone_number')
+        fields = ('username', 'email', 'password', 'password_repeat', 'first_name', 'last_name', 'phone_number')
 
     def validate_password_length(self, value):
         """
@@ -45,12 +46,11 @@ class UserSerializer(serializers.ModelSerializer):
             user.first_name = validated_data['first_name']
         if validated_data.get('last_name'):
             user.last_name = validated_data['last_name']
-        if validated_data.get('avatar'):
-            user.avatar = validated_data['avatar']
         if validated_data.get('phone_number'):
             user.phone_number = validated_data['phone_number']
         user.save()
         return user
+
 
 
 class LogInSerializer(TokenObtainPairSerializer):

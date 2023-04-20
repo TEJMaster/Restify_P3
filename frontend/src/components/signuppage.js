@@ -4,19 +4,67 @@ import logo from './images/blue_merged_logo.jpg';
 
 
 const SignUpPage = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    password_repeat: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const [formData, setFormData] = useState({
+      username: '',
+      email: '',
+      password: '',
+      password_repeat: '',
+    });
+  
+    const [errors, setErrors] = useState({
+      username: '',
+      email: '',
+      password: '',
+      password_repeat: '',
+    });
+  
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+  
+    const validateFormData = () => {
+      const usernameRegex = /^[a-zA-Z0-9@./+-_]{1,150}$/;
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      let isValid = true;
+      let newErrors = {
+        username: '',
+        email: '',
+        password: '',
+        password_repeat: '',
+      };
+  
+      if (!usernameRegex.test(formData.username)) {
+        newErrors.username = 'Invalid username';
+        isValid = false;
+      }
+  
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = 'Invalid email address';
+        isValid = false;
+      }
+  
+      if (formData.password.length < 8) {
+        newErrors.password = 'Password must be at least 8 characters long';
+        isValid = false;
+      }
+  
+      if (formData.password !== formData.password_repeat) {
+        newErrors.password_repeat = "Passwords don't match";
+        isValid = false;
+      }
+  
+      setErrors(newErrors);
+      return isValid;
+    };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateFormData()) {
+        return;
+      }
+    
     console.log("Submitting form data:", formData);
 
     
@@ -82,6 +130,7 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+            <div className="error-text">{errors.username}</div>
 
             <div className="input-field">
               <i className="fa-solid fa-envelope"></i>
@@ -93,6 +142,7 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+            <div className="error-text">{errors.email}</div>
 
             <div className="input-field">
               <i className="fa-solid fa-lock"></i>
@@ -104,7 +154,7 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
-
+            <div className="error-text">{errors.password}</div>
 
             <div className="input-field">
               <i className="fa-solid fa-lock"></i>
@@ -116,6 +166,7 @@ const SignUpPage = () => {
                 onChange={handleChange}
               />
             </div>
+            <div className="error-text">{errors.password_repeat}</div>
           </div>
           <div className="btn-field">
             <button type="submit" id="signinBtn">
