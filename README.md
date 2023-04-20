@@ -6,6 +6,8 @@ We have implemented a React frontend for Restify and connected it to the backend
 
 - **startup.sh**: This script sets up everything required for the code to run in a new environment, including both the frontend and backend servers.
 - **run.sh**: This script initiates the frontend and backend servers.
+- **terminate.sh**: This script terminates the frontend and backend servers.
+- **cleanup.sh**: This script clears the database and all migration files.
 
 ## Files
 
@@ -23,5 +25,3 @@ To set up the project on a new machine, follow these steps:
 
 1. Run `startup.sh` to create a new virtual environment for the project and install all required packages.
 2. Run `run.sh` to start both the frontend and backend servers.
-3. Run `terminate.sh` to terminate the frontend and backend servers.
-4. Run `cleanup.sh` to clear the database and all migration files.
