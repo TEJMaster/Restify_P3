@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SignUpPage.css';
 import logo from './images/blue_merged_logo.jpg';
+import { Link } from 'react-router-dom';
 
 
 const SignUpPage = () => {
@@ -175,10 +176,9 @@ const SignUpPage = () => {
           </div>
         </form>
         <br />
-        <p>
-          Login to existing account{' '}
-          <a href="./login.html">Sign in</a>
-        </p>
+
+        <p>Login to existing account <Link to="/login">Sign in</Link></p>
+
       </div>
     </div>
   );

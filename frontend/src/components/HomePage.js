@@ -21,7 +21,7 @@ const HomePage = () => {
             <Link to="/signup">SIGN UP</Link>
           </li>
           <li>
-            <a href="#">SIGN IN</a>
+            <Link to="/login">SIGN IN</Link>
           </li>
         </ul>
       </nav>

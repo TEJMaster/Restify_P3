@@ -26,4 +26,5 @@ python3 ./backend/manage.py migrate
 cd frontend
 npm install
 npm install react-router-dom
+npm install axios
 cd ..
