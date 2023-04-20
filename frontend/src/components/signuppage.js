@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SignUpPage.css';
+import './css/SignUpPage.css';
 import logo from './images/blue_merged_logo.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 

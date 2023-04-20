@@ -1,5 +1,5 @@
 import React from 'react';
-import './HomePage.css';
+import './css/HomePage.css';
 import { Link } from 'react-router-dom';
 import logo from './images/logo.png'; 
 import videoSource from './images/Video.mp4'; 
@@ -15,7 +15,7 @@ const HomePage = () => {
         <img src={logo} className="logo" alt="logo" />
         <ul>
           <li>
-            <a href="#">HOME</a>
+            <Link to="/">HOME</Link>
           </li>
           <li>
             <Link to="/signup">SIGN UP</Link>
@@ -28,9 +28,9 @@ const HomePage = () => {
 
       <div className="content">
         <h1>WELCOME</h1>
-        <a href="#">
+        <Link to="/">
           <span></span>SEARCH PROPERTIES
-        </a>
+        </Link>
       </div>
     </div>
   );

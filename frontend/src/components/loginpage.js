@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './LoginPage.css';
+import './css/LoginPage.css';
 import { Link } from 'react-router-dom';
 import logo from './images/blue_merged_logo.jpg';
 
