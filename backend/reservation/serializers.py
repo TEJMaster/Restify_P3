@@ -4,10 +4,10 @@ from .models import Reservation, Property
 class PropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = Property
-        fields = ['id', 'name', 'owner']
+        fields = ['id', 'name', 'owner', 'price', 'image']
 
 class ReservationSerializer(serializers.ModelSerializer):
-    property = serializers.PrimaryKeyRelatedField(queryset=Property.objects.all())
+    property = PropertySerializer(read_only=True)
 
     class Meta:
         model = Reservation
