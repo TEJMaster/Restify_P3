@@ -9,11 +9,10 @@ import profileIcon from './images/nav_bar/profile.png';
 import messageIcon from './images/nav_bar/message.png';
 import logoutIcon from './images/nav_bar/logout.png';
 
-
 const NavBar = () => {
   const [userAvatar, setUserAvatar] = useState(null);
-
   const [userName, setUserName] = useState('');
+
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -26,27 +25,15 @@ const NavBar = () => {
         console.error('Error fetching user profile:', error);
       }
     };
-  
+
     fetchUserProfile();
   }, []);
-  
-
-
-//   const toggleBell = () => {
-//     document.getElementById('notify').classList.toggle('open-menu');
-//   };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    const dropdownMenu = document.querySelector(".sub-menu-wrap");
-    if (isDropdownOpen) {
-      dropdownMenu.classList.add("open");
-    } else {
-      dropdownMenu.classList.remove("open");
-    }
   };
-  
 
   return (
     <div className="header">
@@ -70,7 +57,6 @@ const NavBar = () => {
                 src={bellIcon}
                 className="bell"
                 alt="bell"
-                // onClick={toggleBell}
               />
             </li>
           </ul>
@@ -78,12 +64,10 @@ const NavBar = () => {
             src={userAvatar || defaultUserAvatar}
             className="user-pic"
             alt="user"
-            onClick={toggleDropdown}/>
+            onClick={toggleDropdown} />
 
-
-
-        {isDropdownOpen && (
-            <div className="sub-menu-wrap">
+          {isDropdownOpen && (
+            <div className={`sub-menu-wrap${isDropdownOpen ? " open" : ""}`}>
               <div className="sub-menu">
                 <div className="user-info">
                   <img src={userAvatar || defaultUserAvatar} alt="user" />
