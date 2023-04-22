@@ -9,14 +9,41 @@ const ReservationPage = () => {
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showCancellationSubmitted, setShowCancellationSubmitted] = useState(false);
     const [reservationIdToCancel, setReservationIdToCancel] = useState(null);
+    const [userId, setUserId] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [selectedAmenities, setSelectedAmenities] = useState([]);
+    const [tempSelectedAmenities, setTempSelectedAmenities] = useState([]);
 
-    const fetchReservations = async () => {
+
+
+    function handleAmenityChange(e) {
+      const amenityId = parseInt(e.target.value);
+      if (e.target.checked) {
+        setTempSelectedAmenities([...tempSelectedAmenities, amenityId]);
+      } else {
+        setTempSelectedAmenities(tempSelectedAmenities.filter((id) => id !== amenityId));
+      }
+    }
+    
+    function handleFilterConfirm() {
+      setSelectedAmenities(tempSelectedAmenities);
+    }
+
+    const fetchReservations = async (page = 1) => {
       try {
-        const response = await axios.get('http://localhost:8000/reservation/');
+        const response = await axios.get(`http://localhost:8000/reservation/?amenities=${selectedAmenities.join(',')}&page=${page}`);
   
         // Handle successful fetch
         if (response.status === 200) {
-          setReservations(response.data.results);
+
+          // const userReservations = response.data.results.filter(
+          //   (reservation) => reservation.user === userId
+          // );
+
+          const userReservations = response.data.results;
+          setReservations(userReservations);
+          setTotalPages(Math.ceil(response.data.count / response.data.page_size));
         }
       } catch (error) {
         setError('Error fetching reservations');
@@ -25,7 +52,7 @@ const ReservationPage = () => {
   
     useEffect(() => {
       fetchReservations();
-    }, []);
+    }, [selectedAmenities]);
     
     function handleCancelClick(reservationId) {
       setReservationIdToCancel(reservationId);
@@ -71,6 +98,11 @@ const ReservationPage = () => {
       );
     }
 
+    function handlePaginationClick(newPage) {
+      setCurrentPage(newPage);
+      fetchReservations(newPage);
+    }
+
   return (
     
     <div className="reservation-page">
@@ -107,6 +139,36 @@ const ReservationPage = () => {
             <p className="reservation-state">{reservation.state}</p>
           </div>
 
+          <section className="filter-bar">
+      <div className="ticks">
+        <h2>Filter</h2>
+        <h3>Property Type</h3>
+        <div className="filter">
+          <input type="checkbox" /> <p>House</p>
+        </div>
+        <div className="filter">
+          <input type="checkbox" /> <p>Hostel</p>
+        </div>
+        <div className="filter">
+          <input type="checkbox" /> <p>Condo</p>
+        </div>
+
+        <h3>Amenities</h3>
+        <div className="filter">
+          <input type="checkbox" /> <p>Wifi</p>
+        </div>
+        <div className="filter">
+          <input type="checkbox" /> <p>Tub</p>
+        </div>
+        <div className="filter">
+          <input type="checkbox" /> <p>Balcony</p>
+        </div>
+        <div className="filter">
+          <input type="checkbox" /> <p>Kitchen</p>
+        </div>
+      </div>
+    </section>
+
         {showConfirmation && (
             <ConfirmPopup
             reservationId={reservationIdToCancel}
@@ -127,7 +189,23 @@ const ReservationPage = () => {
       ))}
 
         </section>
+      
+
+
+      <div className="pagination">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        <button
+          key={page}
+          className={page === currentPage ? 'active' : ''}
+          onClick={() => handlePaginationClick(page)}
+        >
+          {page}
+        </button>
+      ))}
     </div>
+    </div>
+
+    
   );
 };
 
