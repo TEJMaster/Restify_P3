@@ -12,3 +12,4 @@ find ./backend -path "*/migrations/*.pyc" -delete
 
 # Remove the database file (assuming SQLite)
 rm -f ./backend/db.sqlite3
+
