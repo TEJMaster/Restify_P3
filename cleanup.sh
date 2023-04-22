@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Remove all files in the avatar folder
-rm -rf ./avatars/*
+rm -rf ./backend/media/avatars/*
 
 # Remove __pycache__ directories
 find ./backend -type d -name "__pycache__" -exec rm -r "{}" +

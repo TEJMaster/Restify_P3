@@ -1,4 +1,4 @@
-nav{  
+.nav-bar {  
     background: #394159;  
     width: 100%;  
     padding: 10px 1%;  
@@ -24,7 +24,7 @@ nav{
     margin-left: 20px;  
     cursor: pointer;  
 }  
-nav ul{  
+.nav-bar ul{  
     text-align: right;  
     width: 100%;  
 }  
@@ -32,24 +32,23 @@ nav ul li{
     display: inline-block;  
     margin: 10px 20px;  
 }  
-nav ul li a{  
+.nav-bar ul li a{  
     color: #fff;  
     text-decoration: none;  
 }  
-.sub-menu-wrap{  
-    position: absolute;  
-    top: 90%;  
-    right: 0%;  
-    width: 320px;  
-    max-height: 0px;  
-    overflow: hidden;  
-    z-index: 999;  
-    transition: max-height 0.5s;  
-    background: #e5e5e5;  
-}  
-.sub-menu-wrap.open-menu{  
-    max-height: 400px;  
-}  
+.sub-menu-wrap {
+    position: absolute;
+    top: 90%;
+    right: 0%;
+    width: 320px;
+    z-index: 999;
+    background: #e5e5e5;
+  }
+  
+  .sub-menu-wrap.open {
+    max-height: 400px;
+  }
+  
   
 .sub-menu{  
     background: #fff;  
