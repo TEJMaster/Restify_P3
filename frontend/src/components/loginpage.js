@@ -3,6 +3,7 @@ import axios from 'axios';
 import './css/LoginPage.css';
 import { Link } from 'react-router-dom';
 import logo from './images/blue_merged_logo.jpg';
+import { useNavigate } from 'react-router-dom';
 
 
 function App() {
@@ -27,13 +28,15 @@ function App() {
         localStorage.setItem('access_token', response.data.access_token);
   
         // You can redirect to the main page or another route here
+        navigate('/logged_main');
       }
     } catch (error) {
       setError('Invalid username or password');
     }
   };
   
-
+  const navigate = useNavigate();
+  
   return (
     <div className="container">
       <div className="form-box">
