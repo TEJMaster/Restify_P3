@@ -2,17 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './css/NavBar.css';
+import logo from './images/nav_bar/web_logo.png';
+import bellIcon from './images/nav_bar/bell.png';
+import defaultUserAvatar from './images/user.png';
+import profileIcon from './images/nav_bar/profile.png';
+import messageIcon from './images/nav_bar/message.png';
+import logoutIcon from './images/nav_bar/logout.png';
+
 
 const NavBar = () => {
   const [userAvatar, setUserAvatar] = useState(null);
 
+  const [userName, setUserName] = useState('');
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem('access_token');
         const headers = { Authorization: `Bearer ${token}` };
         const response = await axios.get('http://localhost:8000/account/profile/', { headers });
-        setUserAvatar(response.data.avatar);
+        setUserAvatar(`http://localhost:8000${response.data.avatar}`);
+        setUserName(response.data.username);
       } catch (error) {
         console.error('Error fetching user profile:', error);
       }
@@ -22,20 +31,29 @@ const NavBar = () => {
   }, []);
   
 
-  const toggleMenu = () => {
-    document.getElementById('subMenu').classList.toggle('open-menu');
-  };
 
-  const toggleBell = () => {
-    document.getElementById('notify').classList.toggle('open-menu');
+//   const toggleBell = () => {
+//     document.getElementById('notify').classList.toggle('open-menu');
+//   };
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+    const dropdownMenu = document.querySelector(".sub-menu-wrap");
+    if (isDropdownOpen) {
+      dropdownMenu.classList.add("open");
+    } else {
+      dropdownMenu.classList.remove("open");
+    }
   };
+  
 
   return (
     <div className="header">
       <div className="logged_nav">
-        <nav>
+        <nav className="nav-bar">
           <Link to="/logged_main">
-            <img src="images/nav_bar/web_logo.png" className="logo" alt="logo" />
+            <img src={logo} className="logo" alt="logo" />
           </Link>
           <ul>
             <li>
@@ -49,22 +67,45 @@ const NavBar = () => {
             </li>
             <li>
               <img
-                src="images/nav_bar/bell.png"
+                src={bellIcon}
                 className="bell"
                 alt="bell"
-                onClick={toggleBell}
+                // onClick={toggleBell}
               />
             </li>
           </ul>
           <img
-            src={userAvatar || 'images/user.png'}
+            src={userAvatar || defaultUserAvatar}
             className="user-pic"
             alt="user"
-            onClick={toggleMenu}
-          />
+            onClick={toggleDropdown}/>
 
-          {/* Other parts of the NavBar component */}
-          {/* ... */}
+
+
+        {isDropdownOpen && (
+            <div className="sub-menu-wrap">
+              <div className="sub-menu">
+                <div className="user-info">
+                  <img src={userAvatar || defaultUserAvatar} alt="user" />
+                  <h3>{userName}</h3>
+                </div>
+                <hr />
+
+                <Link to="/profile" className="sub-menu-link">
+                  <img src={profileIcon} alt="edit-profile" />
+                  <p>Edit Profile</p>
+                </Link>
+                <Link to="/comments" className="sub-menu-link">
+                  <img src={messageIcon} alt="comments" />
+                  <p>Comments</p>
+                </Link>
+                <Link to="/home" className="sub-menu-link">
+                  <img src={logoutIcon} alt="logout" />
+                  <p>Logout</p>
+                </Link>
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </div>
