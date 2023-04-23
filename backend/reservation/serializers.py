@@ -28,7 +28,7 @@ class ReservationSerializer(serializers.ModelSerializer):
             property=data['property'],
             from_date__lte=data['to_date'],
             to_date__gte=data['from_date'],
-            state = Reservation.PENDING,
+            state = Reservation.PENDING or Reservation.APPROVED or Reservation.PENDING_CANCEL,
         )
         # also check if the reservation is already canceled or denied
         if duplicate_reservations.exists():

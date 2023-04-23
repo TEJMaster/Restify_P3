@@ -137,7 +137,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	margin-top: 9px;	
+	margin-top: 65px;	
   }
   
   .reservation-state {
@@ -224,5 +224,92 @@
 	appearance: none;
 	background-color: #fff;
 	cursor: pointer;
+  }
+  
+  .pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0;
+  }
+  
+  .pagination button {
+	border: 1px solid #e4e4e4;
+	background-color: #fff;
+	color: #222;
+	font-weight: 600;
+	padding: 8px 12px;
+	margin: 0 2px;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1.2;
+	border-radius: 4px;
+	transition: background-color 0.3s;
+  }
+  
+  .pagination button:hover {
+	background-color: #f7f7f7;
+  }
+  
+  .pagination button.active {
+	background-color: #222;
+	color: #fff;
+  }
+  
+  .pagination button.prev,
+  .pagination button.next {
+	background-color: transparent;
+  }
+
+  
+.host-stays {
+	padding: 20px 20px;
+	background-color: #f8f8f8;
+  }
+  
+  .host-stays h2 {
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 40px;
+	color: #333;
+  }
+  
+  .host-button-state-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-top: 5px;	
+  }
+
+  .approve-button,
+  .deny-button,
+  .approve-cancel-button,
+  .deny-cancel-button {
+	display: inline-block;
+	background-color: #74c69d;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	padding: 8px 16px;
+	font-size: 14px;
+	cursor: pointer;
+	margin-bottom: 10px;
+  }
+  
+  .approve-button:hover,
+  .deny-button:hover,
+  .approve-cancel-button:hover,
+  .deny-cancel-button:hover {
+	background-color: #52b788;
+  }
+  
+  .deny-button,
+  .deny-cancel-button {
+	background-color: #f4a261;
+  }
+  
+  .deny-button:hover,
+  .deny-cancel-button:hover {
+	background-color: #f3722c;
   }
   
