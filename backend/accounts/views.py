@@ -62,10 +62,12 @@ class UserLoginAPIView(APIView):
     
 
 class UserLogoutAPIView(APIView):
-    def get(self, request, *args, **kwargs):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
         try:
-            # Get the refresh token from the cookie
-            token_value = request.COOKIES.get('refresh_token', '')
+            # Get the refresh token from the request's header
+            token_value = request.META.get('HTTP_X_REFRESH_TOKEN', '')
 
             # Blacklist the refresh and access tokens
             token = RefreshToken(token_value)

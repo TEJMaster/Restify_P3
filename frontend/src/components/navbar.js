@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/NavBar.css';
 import logo from './images/nav_bar/web_logo.png';
@@ -34,6 +34,34 @@ const NavBar = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('access_token');
+      const refreshToken = localStorage.getItem('refresh_token');
+  
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'X-Refresh-Token': refreshToken,
+      };
+  
+      await axios.post('http://localhost:8000/account/logout/', {}, {
+        withCredentials: true,
+        headers,
+      });
+  
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      navigate('/');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+  
+  
+  
 
   return (
     <div className="header">
@@ -83,7 +111,7 @@ const NavBar = () => {
                   <img src={messageIcon} alt="comments" />
                   <p>Comments</p>
                 </Link>
-                <Link to="/home" className="sub-menu-link">
+                <Link onClick={handleLogout} className="sub-menu-link">
                   <img src={logoutIcon} alt="logout" />
                   <p>Logout</p>
                 </Link>
