@@ -61,17 +61,33 @@ class UserLoginAPIView(APIView):
             return Response({"error": "Invalid username or password"}, status=status.HTTP_401_UNAUTHORIZED)
     
 
+
+from django.http import JsonResponse
+
+def clean_meta(meta):
+    cleaned = {}
+    for key, value in meta.items():
+        if isinstance(value, (str, int, float, bool, type(None))):
+            cleaned[key] = value
+    return cleaned
+
 class UserLogoutAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         try:
             # Get the refresh token from the request's header
-            token_value = request.META.get('HTTP_X_REFRESH_TOKEN', '')
+            token_value = request.META.get('HTTP_X_REFRESH_TOKEN') or request.META.get('HTTP_X_REFRESH_TOKEN'.replace('-', '_').upper(), '')
+
+            if not token_value:
+                return JsonResponse({"error": "Refresh token not found in headers.", "request_headers": clean_meta(request.META)}, status=status.HTTP_400_BAD_REQUEST)
 
             # Blacklist the refresh and access tokens
-            token = RefreshToken(token_value)
-            token.blacklist()
+            try:
+                token = RefreshToken(token_value)
+                token.blacklist()
+            except Exception as e:
+                return JsonResponse({"error": f"Error blacklisting the token: {str(e)}", "request_headers": clean_meta(request.META)}, status=status.HTTP_400_BAD_REQUEST)
 
             # Clear the access and refresh token cookies
             response = Response({'message': 'User is successfully logged out.'})
@@ -81,9 +97,7 @@ class UserLogoutAPIView(APIView):
             return response
 
         except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-
+            return JsonResponse({'error': str(e), "request_headers": clean_meta(request.META)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 

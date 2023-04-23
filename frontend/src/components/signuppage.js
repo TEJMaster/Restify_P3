@@ -113,15 +113,15 @@ const SignUpPage = () => {
   
 
   return (
-    <div className="container">
-      <div className="form-box">
+    <div className="signup-container">
+      <div className="login-form-box">
         <Link to="/">
             <img src={logo} alt="logo" className="login_logo" />
         </Link>
 
         <h1 id="title">Sign Up</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='login-form'>
           <div className="input-group2">
             <div className="input-field" id="nameField">
               <i className="fa-solid fa-user"></i>
@@ -171,7 +171,7 @@ const SignUpPage = () => {
             </div>
             <div className="error-text">{errors.password_repeat}</div>
           </div>
-          <div className="btn-field">
+          <div className="signup-btn-field">
             <button type="submit" id="signinBtn">
               <span></span>Submit
             </button>

@@ -1,174 +1,177 @@
-*{  
-    margin: 0;  
-    padding: 0;  
-    font-family: 'Poppins', sans-serif;  
-    box-sizing: border-box;  
-}  
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+  }
   
+  .login-container {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(25, 25, 25, 0.5), rgba(25, 25, 25, 0.5)), url('../images/login_background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    min-height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
-.container{  
-    width: 100%;  
-    height: 100vh;  
-    background-image: url('../images/login_background.jpg');
-    background-repeat: no-repeat;  
+  .login-form-box {
+    max-width: 450px;
+    background: #fff;
+    padding: 40px 50px;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  }
   
-    background-position: center;  
-    background-size: cover;  
-    position: relative;  
-    min-height: 700px;  
-}  
+  .login-form-box h1 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #333;
+    position: relative;
+  }
   
-.form-box{  
-    width: 90%;  
-    max-width: 450px;  
-    position: absolute;  
-    top: 50%;  
-    left: 50%;  
-    transform: translate(-50%,-50%);  
-    background: #fff;  
-    padding: 50px 60px 70px;  
-    text-align: center;  
-    align-items: center;  
-    border-radius: 10%;  
-    background: rgba(256, 256, 256, 0.98);  
-}  
-.form-box h1{  
-    font-size: 30px;  
-    margin-bottom: 30px;  
-    color: #333;  
-    position: relative;  
-}  
-.form-box h1::after{  
-    content: '';  
-    width: 50px;  
-    height: 4px;  
-    border-radius: 3px;  
-    background: #394159;  
-    position: absolute;  
-    bottom: -12px;  
-    left: 50%;  
-    transform: translateX(-50%);  
-}  
+  .login-form-box h1::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    border-radius: 3px;
+    background: #6C98C6;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   
+  .login-input-field {
+    background: #f0f0f0;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    height: 55px;
+    width: 100%;
+    overflow: hidden;
+  }
   
+  input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+    font-size: 14px;
+    color: #333;
+  }
   
-.input-field{  
-    background: #eaeaea;  
-    margin: 15px 0;  
-    border-radius: 3px;  
-    display: flex;  
-    align-items: center;  
-    height: 55px;  
-    transition: max-height 0.5s;
-    width: 80%;
-    overflow: hidden;  
-}  
-/* input{  
-    width: 100%;  
-    background: transparent;  
-    border: 0;  
-    outline: 0;  
-    padding: 18px 15px;  
-}   */
-.input-field i{  
-    margin-left: 15px;  
-    color: #999;  
-}  
+  .login-input-field i {
+    margin-left: 15px;
+    color: #999;
+  }
   
-form p{  
-    text-align: left;  
-    font-size: 15px;  
-}  
-form p a{  
-    text-decoration: none;  
-    color: #3c00a0;  
-}  
-  
-.btn-field{  
-    width: 100%;  
-    display: flex;  
-    justify-content: center;  
-}  
-  
-.btn-field button{  
-    text-decoration: none;  
-    display: inline-block;  
-    color: #394159;  
-    font-size: 24px;  
-    border: 2px solid #6C98C6;  
-    padding: 10px 50px;  
-    border-radius: 50px;  
-    margin-top: 20px;  
-    background: transparent;  
-    cursor: pointer;  
-    position: relative;  
-    overflow: hidden;  
-}  
-  
-.btn-field button span {  
-    background: #6C98C6;  
-    height: 100%;  
-    width: 0;  
-    border-radius: 25px;  
-    position: absolute;  
-    left: 0;  
-    bottom: 0;  
-    z-index: -1;  
-    transition: 0.5s;  
-  
-}  
-  
-.btn-field button:hover span{  
-    width: 100%;  
-}  
-  
-  
-  
-.input-group{  
-    height: 280px;  
-    display: flex;  
-    flex-direction: column;  
-    align-items: center;  
-    margin-bottom: -20px;  
-}  
-  
-.input-group2{  
-    height: 280px;  
-    display: flex;  
-    flex-direction: column;  
-    align-items: center;  
-    margin-bottom: -10px;  
-}  
-  
-.login_logo{  
-    width: 80px;  
-    height: 80px;  
-    border-radius: 15%;  
-    overflow: hidden;  
-    border: 5px solid #fff;  
-  
-}  
-  
-.remember{  
-    display: flex;  
-    flex-direction: row;  
-    align-items: center;  
-    justify-content: space-between;  
-  
-      
-}  
-  
-label{  
-    width: 300px;  
-    transform: translateX(-80px);  
-}
-
-.error {
+  .login-form p {
+    text-align: left;
     font-size: 15px;
-    color: red;
+    color: #666;
+  }
+  
+  .login-form p a {
+    text-decoration: none;
+    color: #6C98C6;
+    font-weight: bold;
+  }
+  
+  .login-btn-field {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-btn-field button {
+    text-decoration: none;
+    display: inline-block;
+    color: #fff;
+    font-size: 18px;
+    background: #6C98C6;
+    padding: 10px 40px;
+    border-radius: 50px;
+    margin-top: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+  
+  .login-btn-field button:hover {
+    background: #4a7dbd;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-group2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login_logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 15%;
+    overflow: hidden;
+    border: 5px solid fff;
+  }
+
+  .remember {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    }
+    
+    label {
+    width: 300px;
+    font-size: 14px;
+    color: #666;
+    }
+    
+    input[type="checkbox"] {
+    margin-right: 5px;
+    }
+    
+    .error {
+    font-size: 15px;
+    color: #ff4f4f;
     margin: 0;
     padding: 0;
     text-align: center;
     transform: translateY(-20px);
-  }
-  
+    }
+    
+    /* Add transitions and smooth focus effect */
+    input:focus + i {
+    color: #6C98C6;
+    }
+    
+    .input-field {
+    transition: background 0.3s, color 0.3s;
+    }
+    
+    .input-field:hover {
+    background: #e0e0e0;
+    }
+    
+    .input-field:focus-within {
+    background: #d0d0d0;
+    }

@@ -41,17 +41,17 @@ function LoginPage({ setAuthStatus }) {
   const navigate = useNavigate();
   
   return (
-    <div className="container">
-      <div className="form-box">
+    <div className="login-container">
+      <div className="login-form-box">
         <Link to="/">
             <img src={logo} alt="logo" className="login_logo" />
         </Link>
 
         <h1>Log in</h1>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className='login-form'>
           <div className="input-group">
-            <div className="input-field" id="nameField">
+            <div className="login-input-field" id="nameField">
               <i className="fa-solid fa-user"></i>
               <input
                 type="text"
@@ -61,7 +61,7 @@ function LoginPage({ setAuthStatus }) {
               />
             </div>
 
-            <div className="input-field">
+            <div className="login-input-field">
               <i className="fa-solid fa-lock"></i>
               <input
                 type="password"
@@ -73,7 +73,7 @@ function LoginPage({ setAuthStatus }) {
             <br />
           </div>
           {error && <p className="error">{error}</p>}
-          <div className="btn-field">
+          <div className="login-btn-field">
             <button type="submit" id="signinBtn">
               <span></span>Sign In
             </button>

@@ -72,7 +72,7 @@ const NavBar = () => {
           </Link>
           <ul>
             <li>
-              <Link to="/stays">Explore</Link>
+              <Link to="/logged_main">Explore</Link>
             </li>
             <li>
               <Link to="/reservation">My reservation</Link>

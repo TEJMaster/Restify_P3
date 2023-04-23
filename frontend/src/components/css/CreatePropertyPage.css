@@ -1,205 +1,149 @@
-*{  
-    margin: 0;  
-    padding: 0;  
-    box-sizing: border-box;  
-    font-family: 'Poppins', sans-serif;  
-}  
-  
+body {
+    font-family: "Lato", sans-serif;
+    color: #333;
+    background-color: #f7f7f7;
+}
 
-  
-.house{  
-    position: absolute;  
-    top: 70px;  
-    right: 5%;  
-    display: flex;  
-    flex-direction: column;  
-    text-align: center;  
-    border: 1px solid #394159;  
-    border-radius: 10%;  
-    padding: 50px 20px;  
-    font-family: 'Poppins', sans-serif;  
-    background-color: #F5F5F5;  
-}  
+.house {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    min-height: calc(160vh - 60px); /* Subtract any additional margins/paddings from 100vh */
+}
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-pair {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 5px;
+    flex: 1;
+    margin-right: 10px;
+    
+}
+
+.input-field:last-child {
+    margin-right: 0;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="file"] {
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin-left: 5px;
+    width: 250px;
+}
+
+i {
+    color: #333;
+}
+
+p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.btn-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #333;
+}
+
+button[type="button"] {
+    color:#ffffff;
+    background-color: #ff5361;
+}
+
+button[type="button"]:hover {
+    background-color: #ffffff;
+    color: #ff5361;
+}
+
+.form-content {
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
   
-.btn-field{  
-    width: 100%;  
-    display: flex;  
-    justify-content: center;  
-}  
-  
-.btn-field button{  
-    text-decoration: none;  
-    display: inline-block;  
-    color: #394159;  
-    font-size: 24px;  
-    border: 2px solid #6C98C6;  
-    padding: 10px 50px;  
-    border-radius: 50px;  
-    margin-top: 20px;  
-    background: transparent;  
-    cursor: pointer;  
-    position: relative;  
-    overflow: hidden;  
-    margin: 10px;  
-}  
-  
-.btn-field button span {  
-    background: #6C98C6;  
-    height: 100%;  
-    width: 0;  
-    border-radius: 25px;  
-    position: absolute;  
-    left: 0;  
-    bottom: 0;  
-    z-index: -1;  
-    transition: 0.5s;  
-  
-}  
-  
-.btn-field button:hover span{  
-    width: 100%;  
-}  
-  
-.form-box{  
-    width: 90%;  
-    max-width: 450px;  
-    position: absolute;  
-    top: 50%;  
-    left: 50%;  
-    transform: translate(-50%,-50%);  
-    background: #fff;  
-    padding: 50px 60px 70px;  
-    text-align: center;  
-    align-items: center;  
-    border-radius: 10%;  
-    background: rgba(256, 256, 256, 0.98);  
-}  
-.form-box h1{  
-    font-size: 30px;  
-    margin-bottom: 30px;  
-    color: #333;  
-    position: relative;  
-}  
-.form-box h1::after{  
-    content: '';  
-    width: 50px;  
-    height: 4px;  
-    border-radius: 3px;  
-    background: #394159;  
-    position: absolute;  
-    bottom: -12px;  
-    left: 50%;  
-    transform: translateX(-50%);  
-}  
-  
-  
-  
-.input-field{  
-    background: #eaeaea;  
-    margin: 15px 0;  
-    border-radius: 3px;  
-    display: flex;  
-    align-items: center;  
-    max-height: 65px;  
-    transition: max-height 0.5s;  
-    overflow: hidden;  
-    max-width: 20vw;  
-}  
-.input-field p{  
-    color: #394159;  
-    background-color: white;  
-    font-size: 20px;  
-    padding: 0 15px;  
-}  
-input{  
-    width: 100%;  
-    background: transparent;  
-    border: 0;  
-    outline: 0;  
-    padding: 18px 15px;  
-}  
-.input-field i{  
-    margin-left: 15px;  
-    color: #999;  
-}  
-  
-form p{  
-    text-align: left;  
-    font-size: 15px;  
-}  
-form p a{  
-    text-decoration: none;  
-    color: #3c00a0;  
-}  
-  
-.input-pair{  
-    display: flex;  
-  
-}  
-  
-.input-pair p{  
-    transform: translateY(20px);  
-    margin: 10px;  
-    min-width: 80px;  
-}  
-  
-@media only screen and (max-width: 1500px){  
-    .profile_left{  
-        left: 3%;  
-    }  
-    .profile_right{  
-        right: 3%;  
-    }  
-}  
-  
-@media only screen and (max-width: 1350px){  
-    .profile{  
-        background-image: none;  
-    }  
-    .profile_left{  
-        position: absolute;  
-        top: 50px;  
-        border: none;  
-        padding: 15px;  
-        margin: 0;  
-        left: 20%;  
-        width: 60%;  
-    }  
-    .profile_right{  
-        position: absolute;  
-        top: 530px;  
-        border: none;  
-        padding: 20px;  
-        margin: 0;  
-        left: 20%;  
-        width: 60%;  
-    }  
-  
-    .input-pair{  
-        flex-direction: column;  
-    }  
-  
-    .input-field{  
-        max-width: 50vw;  
-    }  
-    .btn-field{  
-        display: flex;  
-        flex-direction: column;  
-    }  
-}  
-  
-@media only screen and (max-width: 800px){  
-    .profile_left{  
-        width: 80%;  
-        left: 10%;  
-    }  
-  
-    .profile_right{  
-        width: 80%;  
-        left: 10%;  
-    }  
-    .input-field{  
-        max-width: 70vw;  
-    }  
-}  
+  .btn-field {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      width: 100%;
+      margin-bottom: 0;
+  }
+  .btn-field button {
+    width: 100%;
+    margin: 5px 0;
+    background-color: #333;
+    border: 2px solid #333;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    padding: 10px 15px;
+    transition: background-color 0.2s, color 0.2s;
+    margin-top: 110vh;
+  }
+
+  button {
+    font-size: 17pt;
+    width: 100%;
+    margin: 5px 0;
+    background-color: #333;
+    border: 2px solid #333;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    padding: 10px 15px;
+    transition: background-color 0.2s, color 0.2s;
+    justify-content: space-between;
+  }
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
