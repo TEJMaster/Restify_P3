@@ -15,7 +15,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 import os
 import time
-
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -117,3 +117,7 @@ class PropertySearchView(ListAPIView):
         queryset = super().get_queryset()
         queryset = self.filter_queryset(queryset)
         return queryset
+
+def CheckUniquePropertyName(request, property_name):
+    is_unique = not Property.objects.filter(name=property_name).exists()
+    return JsonResponse({"is_unique": is_unique})

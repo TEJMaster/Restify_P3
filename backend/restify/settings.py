@@ -173,7 +173,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Allow all origins to make requests (not recommended for production)
 CORS_ALLOW_ALL_ORIGINS = True
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'content-type',

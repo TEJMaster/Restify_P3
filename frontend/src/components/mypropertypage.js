@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from './navbar';
 import './css/MyPropertyPage.css';
+import { Link } from 'react-router-dom';
 
 
 const LoggedMainPage = () => {
@@ -13,7 +14,7 @@ const LoggedMainPage = () => {
             <div className="prop-lists">
             <p></p>
             <h1>Your Properties</h1>
-            <a href="new_house.html"><button className="add-button">Add New Property</button></a>
+            <Link to="/create_property"><button className="add-button">Add New Property</button></Link>
             </div>
         </div>
       </div>
