@@ -108,12 +108,8 @@
   .stay-image {
 	flex: 0 0 120px;
 	margin-right: 16px;
-  }
-  
-  .stay-image img {
-	width: 100%;
-	height: auto;
-	object-fit: cover;
+	height: 80px;
+	overflow: hidden;
 	border-radius: 4px;
   }
   
@@ -272,6 +268,8 @@
 	margin-bottom: 40px;
 	color: #333;
   }
+
+
   
   .host-button-state-container {
 	display: flex;
