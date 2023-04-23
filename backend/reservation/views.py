@@ -14,20 +14,24 @@ from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import PermissionDenied
 from notification.models import Notification
 from rest_framework import serializers
+from django.db.models import Q
 
 from datetime import date
 
 class ReservationPagination(PageNumberPagination):
-    page_size = 2
+    page_size = 3
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
 class ReservationViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
     pagination_class = ReservationPagination
     filter_backends = [DjangoFilterBackend]
     filterset_class = ReservationFilter
+
+    def get_queryset(self):
+        user = self.request.user
+        return Reservation.objects.filter(Q(user=user) | Q(property__owner=user))
     
 # Reserve
 class ReservationCreateView(generics.CreateAPIView):
@@ -104,6 +108,9 @@ class ReservationApproveDenyCancelView(generics.UpdateAPIView):
             elif action == 'deny_cancel':
                 reservation.state = Reservation.PENDING
                 Notification.objects.create(recipient=reservation.user, content=f"{u.username} has denied your cancellation of {reservation.property.name}.")
+            elif action == 'terminate':
+                reservation.state = Reservation.TERMINATED
+                Notification.objects.create(recipient=reservation.user, content=f"{u.username} has terminated your reservation of {reservation.property.name}.")
             reservation.save()
         else:
             raise PermissionDenied("You are not the owner of this property.")
