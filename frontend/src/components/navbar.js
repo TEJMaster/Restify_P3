@@ -75,7 +75,7 @@ const NavBar = () => {
               <Link to="/stays">Explore</Link>
             </li>
             <li>
-              <Link to="/listing">My reservation</Link>
+              <Link to="/reservation">My reservation</Link>
             </li>
             <li>
               <Link to="/my_property">My property</Link>
