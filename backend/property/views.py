@@ -16,7 +16,10 @@ from django.core.files.storage import default_storage
 import os
 import time
 from django.http import JsonResponse
-
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.core import serializers
+from rest_framework import generics
 
 # Create your views here.
 
@@ -121,3 +124,14 @@ class PropertySearchView(ListAPIView):
 def CheckUniquePropertyName(request, property_name):
     is_unique = not Property.objects.filter(name=property_name).exists()
     return JsonResponse({"is_unique": is_unique})
+
+
+class PropertyDetail(generics.RetrieveAPIView):
+    serializer_class = PropertySerializer
+    lookup_field = 'name'
+    queryset = Property.objects.all()
+
+    def get_queryset(self):
+        name = self.kwargs['name']
+        property_instance = get_object_or_404(Property, name=name)
+        return Property.objects.filter(pk=property_instance.pk)
