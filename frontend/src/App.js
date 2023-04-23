@@ -9,6 +9,8 @@ import ProfilePage from './components/profilepage';
 import ReservationPage from './components/reservationpage';
 import MyPropertyPage from './components/mypropertypage';
 import CreateProperty from './components/createpropertypage';
+import Comment_property_Page from './components/propertycomment';
+import HostComment_Page from './components/hostcomment';
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route path="/reservation" element={<ReservationPage />} />
           <Route path="/my_property" element={<MyPropertyPage />} />
           <Route path="/create_property" element={<CreateProperty />} />
+          <Route path="/comment_property" element={<Comment_property_Page />} />
+          <Route path="/comment_user" element={<HostComment_Page />} />
         </Routes>
       </div>
     </Router>
