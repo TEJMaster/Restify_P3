@@ -122,7 +122,7 @@ button[type="button"]:hover {
     outline: none;
     padding: 10px 15px;
     transition: background-color 0.2s, color 0.2s;
-    margin-top: 110vh;
+    margin-top: 120vh;
   }
 
   button {
