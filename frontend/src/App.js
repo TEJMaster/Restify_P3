@@ -25,6 +25,8 @@ function App() {
           <Route path="/reservation" element={<ReservationPage />} />
           <Route path="/my_property" element={<MyPropertyPage />} />
           <Route path="/create_property" element={<CreateProperty />} />
+          <Route path="/comment_property" element={<Comment_property_Page />} />
+          <Route path="/comment_user" element={<HostComment_Page />} />
         </Routes>
       </div>
     </Router>

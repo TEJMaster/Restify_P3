@@ -1,0 +1,68 @@
+.write-host-review {
+    background-color: white;
+    border: 1px solid #e0e7ff;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.write-host-review h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #4c4e61;
+}
+
+.write-host-review form {
+    display: flex;
+    flex-direction: column;
+}
+
+.write-host-review label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #4c4e61;
+}
+
+.rating {
+    margin-bottom: 15px;
+}
+
+.write-host-review form input,
+.write-host-review form select,
+.write-host-review form textarea {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 16px;
+    float: left;
+    outline: 0;
+    color: #4c4e61;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.write-host-review form input:focus,
+.write-host-review form select:focus,
+.write-host-review form textarea:focus {
+    border-color: #6c98c6;
+}
+
+.write-host-review .submit-button {
+    background-color: #6c98c6;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.write-host-review .submit-button:hover {
+    background-color: #4c81b6;
+}
