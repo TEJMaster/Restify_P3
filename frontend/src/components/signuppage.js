@@ -113,7 +113,7 @@ const SignUpPage = () => {
   
 
   return (
-    <div className="container">
+    <div className="signup-container">
       <div className="login-form-box">
         <Link to="/">
             <img src={logo} alt="logo" className="login_logo" />
@@ -171,7 +171,7 @@ const SignUpPage = () => {
             </div>
             <div className="error-text">{errors.password_repeat}</div>
           </div>
-          <div className="btn-field">
+          <div className="signup-btn-field">
             <button type="submit" id="signinBtn">
               <span></span>Submit
             </button>
