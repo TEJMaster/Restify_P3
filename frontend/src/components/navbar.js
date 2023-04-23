@@ -78,7 +78,7 @@ const NavBar = () => {
               <Link to="/listing">My reservation</Link>
             </li>
             <li>
-              <Link to="/hosts">My property</Link>
+              <Link to="/my_property">My property</Link>
             </li>
             <li>
               <img

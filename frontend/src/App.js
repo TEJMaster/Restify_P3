@@ -7,6 +7,7 @@ import LoginPage from './components/loginpage';
 import LoggedMainPage from './components/loggedmainpage';
 import ProfilePage from './components/profilepage';
 import ReservationPage from './components/reservationpage';
+import MyPropertyPage from './components/mypropertypage';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/logged_main" element={<LoggedMainPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/reservation" element={<ReservationPage />} />
+          <Route path="/my_property" element={<MyPropertyPage />} />
         </Routes>
       </div>
     </Router>

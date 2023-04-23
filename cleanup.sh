@@ -2,6 +2,7 @@
 
 # Remove all files in the avatar folder
 rm -rf ./backend/media/avatars/*
+rm -rf .backend/media/property_images/*
 
 # Remove __pycache__ directories
 find ./backend -type d -name "__pycache__" -exec rm -r "{}" +

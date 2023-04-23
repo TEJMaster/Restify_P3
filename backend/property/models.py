@@ -30,3 +30,13 @@ class Property(models.Model):
         
     # def __str__(self):
     #     return self.name
+
+
+from django.conf import settings
+
+class PropertyImage(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='property_images/', default='default_images/default_property_image.jpg')
+
+    def __str__(self):
+        return self.property.name
