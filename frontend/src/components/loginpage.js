@@ -27,6 +27,7 @@ function LoginPage({ setAuthStatus }) {
 
         // Store the access token in localStorage
         localStorage.setItem('access_token', response.data.access_token);
+        localStorage.setItem('refresh_token', response.data.refresh_token);
 
 
         // You can redirect to the main page or another route here
