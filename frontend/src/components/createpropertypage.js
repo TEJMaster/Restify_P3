@@ -91,11 +91,12 @@ const CreatePropertyPage = () => {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <NavBar />
       {/* Main page content */}
       <div className="house">
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-container">
+      <div className="btn-field">
           <div className="input-group">
             <div className="input-pair">
               <p> Property Name: </p>
@@ -204,22 +205,18 @@ const CreatePropertyPage = () => {
               <input type="number" name="price" required/>
             </div>
           </div>
-          </div>
-
-
-          <div className="btn-field">
+        </div>
             <button
               type="button"
-              id="signinBtn"
-              style={{ color: '#ff5361', borderColor: '#ff5361' }}
               onClick={handleCancel}
             >
               <span></span>Cancel
             </button>
+            </div>
             <button type="submit" id="signinBtn">
               <span></span>Create Property
             </button>
-            </div>
+            
         </form>
         </div>
     </div>
