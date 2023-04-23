@@ -6,7 +6,8 @@ import logo from './images/blue_merged_logo.jpg';
 import { useNavigate } from 'react-router-dom';
 
 
-function App() {
+// Add this prop to the function arguments
+function LoginPage({ setAuthStatus }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -18,15 +19,16 @@ function App() {
         username: username,
         password: password,
       });
-  
+
       // Handle successful login
       if (response.status === 200) {
         setError('');
         console.log('Login successful');
-        
+
         // Store the access token in localStorage
         localStorage.setItem('access_token', response.data.access_token);
-  
+
+
         // You can redirect to the main page or another route here
         navigate('/logged_main');
       }
@@ -85,4 +87,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;
