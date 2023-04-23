@@ -142,9 +142,8 @@
   
   .reservation-state {
 	margin-top: 5px;
-	margin-right: 7px;
+	margin-right: 20px;
 	color: #007bff;
-  
   }
 
   .cancel-button {
@@ -293,13 +292,32 @@
 	padding: 8px 16px;
 	font-size: 14px;
 	cursor: pointer;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	margin-right: 8px;
+  }
+
+  .terminate-button {
+	display: inline-block;
+	background-color: #ff7757;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	padding: 8px 16px;
+	font-size: 14px;
+	cursor: pointer;
+	margin-bottom: 5px;
+	margin-right: 8px;
+  }
+
+  .terminate-button:hover {
+	background-color: #f3722c;
   }
   
   .approve-button:hover,
   .deny-button:hover,
   .approve-cancel-button:hover,
-  .deny-cancel-button:hover {
+  .deny-cancel-button:hover
+  .terminate-button:hover {
 	background-color: #52b788;
   }
   

@@ -108,6 +108,9 @@ class ReservationApproveDenyCancelView(generics.UpdateAPIView):
             elif action == 'deny_cancel':
                 reservation.state = Reservation.PENDING
                 Notification.objects.create(recipient=reservation.user, content=f"{u.username} has denied your cancellation of {reservation.property.name}.")
+            elif action == 'terminate':
+                reservation.state = Reservation.TERMINATED
+                Notification.objects.create(recipient=reservation.user, content=f"{u.username} has terminated your reservation of {reservation.property.name}.")
             reservation.save()
         else:
             raise PermissionDenied("You are not the owner of this property.")

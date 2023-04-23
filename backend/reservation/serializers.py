@@ -48,7 +48,7 @@ class ReservationActionSerializer(serializers.ModelSerializer):
 
       
 class ReservationApproveDenyCancelSerializer(serializers.ModelSerializer):
-    action = serializers.ChoiceField(choices=['approve', 'deny', 'approve_cancel', 'deny_cancel'])
+    action = serializers.ChoiceField(choices=['approve', 'deny', 'approve_cancel', 'deny_cancel', 'terminate'])
 
     class Meta:
         model = Reservation

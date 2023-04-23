@@ -368,6 +368,19 @@ const ReservationPage = () => {
           </>
         )}
 
+        {reservation.state === "Approved" && (
+          <>
+            <button
+              className="terminate-button"
+              onClick={() =>
+                handleHostAction(reservation.id, "terminate")
+              }
+            >
+              Terminate
+            </button>
+          </>
+        )}
+
         <p className="reservation-state">{reservation.state}</p>
       </div>
     </div>
