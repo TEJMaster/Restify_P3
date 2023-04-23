@@ -6,6 +6,9 @@ import SignUpPage from './components/signuppage';
 import LoginPage from './components/loginpage';
 import LoggedMainPage from './components/loggedmainpage';
 import ProfilePage from './components/profilepage';
+import ReservationPage from './components/reservationpage';
+import MyPropertyPage from './components/mypropertypage';
+import CreateProperty from './components/createpropertypage';
 
 
 function App() {
@@ -19,6 +22,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logged_main" element={<LoggedMainPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/reservation" element={<ReservationPage />} />
+          <Route path="/my_property" element={<MyPropertyPage />} />
+          <Route path="/create_property" element={<CreateProperty />} />
         </Routes>
       </div>
     </Router>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
-from .models import Property
+from .models import Property, PropertyImage
 from .serializers import PropertySerializer, PropertyUpdateSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
@@ -9,7 +9,13 @@ from rest_framework.response import Response
 from rest_framework import filters, pagination
 from rest_framework import permissions, status
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.parsers import MultiPartParser, FormParser
 from .filters import PropertyFilter
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+import os
+import time
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -18,18 +24,37 @@ class PropertyCreateAPIView(CreateAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
     permission_classes = (permissions.IsAuthenticated,)
-    
+    parser_classes = (MultiPartParser, FormParser)
+
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-        
-    def get(self, request, fomat=None):
+        property_instance = serializer.save(owner=self.request.user)
+        if self.request.FILES.getlist('images'):
+            for image in self.request.FILES.getlist('images'):
+                # Add a timestamp to the original image file name
+                timestamp = int(time.time())
+                image.name = f"{timestamp}_{image.name}"
+                
+                PropertyImage.objects.create(property=property_instance, image=image)
+        else:
+            default_image_path = os.path.join(os.path.dirname(__file__), 'default_images/default_property_image.jpg')
+            image_name = f"{int(time.time())}_default_property_image.jpg"
+            with open(default_image_path, 'rb') as f:
+                content = ContentFile(f.read())
+                new_path = default_storage.save(f'property_images/{image_name}', content)
+                PropertyImage.objects.create(property=property_instance, image=new_path)
+
+
+
+    def get(self, request, format=None):
         qs = Property.objects.all()
         serializer = PropertySerializer(qs, many=True)
         return Response(serializer.data)
 
+
 class PropertyUpdateAPIView(UpdateAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertyUpdateSerializer
+    parser_classes = (MultiPartParser, FormParser)
     
     def get(self, request, *args, **kwargs):
         property_instance = self.get_object()
@@ -92,3 +117,7 @@ class PropertySearchView(ListAPIView):
         queryset = super().get_queryset()
         queryset = self.filter_queryset(queryset)
         return queryset
+
+def CheckUniquePropertyName(request, property_name):
+    is_unique = not Property.objects.filter(name=property_name).exists()
+    return JsonResponse({"is_unique": is_unique})
