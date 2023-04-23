@@ -31,6 +31,7 @@ class Reservation(models.Model):
         ('deny', 'Deny'),
         ('approve_cancel', 'Approve Cancel'),
         ('deny_cancel', 'Deny Cancel'),
+        ('terminate', 'Terminate'),
     ]
         
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
