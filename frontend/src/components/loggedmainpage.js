@@ -62,66 +62,78 @@ const LoggedMainPage = () => {
     <div>
       <NavBar />
       {/* Main page content */}
-      <div>
-        <form onSubmit={handleSearchSubmit}>
-        <label>
-            Location contains:
-            <input
-              type="text"
-              name="location"
-              value={searchParams.location}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            From date is greater than or equal to:
-            <input
-              type="date"
-              name="from_date"
-              value={searchParams.from_date}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            To date is less than or equal to:
-            <input
-              type="date"
-              name="to_date"
-              value={searchParams.to_date}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Guests is greater than or equal to:
-            <input
-              type="number"
-              name="num_guests"
-              value={searchParams.num_guests}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Amenities contains:
-            <input
-              type="text"
-              name="amenities"
-              value={searchParams.amenities}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Ordering:
-            <select name="ordering" value={searchParams.ordering} onChange={handleChange}>
-              <option value="">Select ordering</option>
-              <option value="price">Price - Ascending</option>
-              <option value="-price">Price - Descending</option>
-              <option value="guests">Guests - Ascending</option>
-              <option value="-guests">Guests - Descending</option>
-            </select>
-          </label>
-          <button type="submit">Search</button>
-        </form>
-        <div>
+      <div className="container1">
+        <h1>Explore Your Next Place With Restify</h1>
+        <div className="search-bar">
+          <form onSubmit={handleSearchSubmit}>
+            <div className="location-input">
+              <label>Location</label>
+              <input
+                type="text"
+                name="location"
+                value={searchParams.location}
+                onChange={handleChange}
+                placeholder="Where are you going?"
+              />
+            </div>
+            <div>
+              <label>Check in</label>
+              <input
+                type="date"
+                name="from_date"
+                value={searchParams.from_date}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Check out</label>
+              <input
+                type="date"
+                name="to_date"
+                value={searchParams.to_date}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Guest</label>
+              <select
+                id="guest"
+                name="num_guests"
+                value={searchParams.num_guests}
+                onChange={handleChange}
+                className="guest"
+                required
+              >
+                <option value="">Select guests number</option>
+                <option value="1">1 guest</option>
+                <option value="2">2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4 guests</option>
+                <option value="5">5 guests +</option>
+              </select>
+            </div>
+            <div>
+              <label>Sort By</label>
+              <select
+                id="ordering"
+                name="ordering"
+                value={searchParams.ordering}
+                onChange={handleChange}
+              >
+                <option value="">Sort By</option>
+                <option value="-price">Price (high to low)</option>
+                <option value="price">Price (low to high)</option>
+                <option value="-rate">Rate (high to low)</option>
+                <option value="rate">Rate (low to high)</option>
+              </select>
+            </div>
+            <button type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="container">
         {searchResults.map((result) => (
           <div key={result.name} className="search-result">
             <h3>{result.name}</h3>
@@ -140,10 +152,10 @@ const LoggedMainPage = () => {
         <button
           className="view-button"
           onClick={() => {
-            navigate(`/property/${result.name}`);
+            /* Implement view property functionality here */
           }}>
-          View
-        </button>
+            View
+          </button>
         </div>
       ))}
 
