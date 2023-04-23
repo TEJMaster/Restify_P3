@@ -6,22 +6,22 @@
 }
 
 body {
-  background-image: url('../images/background.jpg'); /* Add this line */
-  background-size:120vw; /* Add this line */
-  background-repeat: no-repeat; /* Add this line */
-  background-position: center; /* Add this line */
   background-color: #f0f2f5;
 }
 
 
+
 .profile {
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
+  background-image: url('../images/background.jpg'); /* Add this line */
+  background-repeat: no-repeat; /* Add this line */
+  background-position: center; /* Add this line */
 }
 
 .profile_left,
