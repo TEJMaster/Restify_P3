@@ -42,14 +42,14 @@ function LoginPage({ setAuthStatus }) {
   
   return (
     <div className="container">
-      <div className="form-box">
+      <div className="login-form-box">
         <Link to="/">
             <img src={logo} alt="logo" className="login_logo" />
         </Link>
 
         <h1>Log in</h1>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className='loginform'>
           <div className="input-group">
             <div className="input-field" id="nameField">
               <i className="fa-solid fa-user"></i>

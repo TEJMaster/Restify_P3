@@ -114,14 +114,14 @@ const SignUpPage = () => {
 
   return (
     <div className="container">
-      <div className="form-box">
+      <div className="login-form-box">
         <Link to="/">
             <img src={logo} alt="logo" className="login_logo" />
         </Link>
 
         <h1 id="title">Sign Up</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='login-form'>
           <div className="input-group2">
             <div className="input-field" id="nameField">
               <i className="fa-solid fa-user"></i>

@@ -18,7 +18,7 @@
     min-height: 700px;  
 }  
   
-.form-box{  
+.login-form-box{  
     width: 90%;  
     max-width: 450px;  
     position: absolute;  
@@ -32,13 +32,13 @@
     border-radius: 10%;  
     background: rgba(256, 256, 256, 0.98);  
 }  
-.form-box h1{  
+.login-form-box h1{  
     font-size: 30px;  
     margin-bottom: 30px;  
     color: #333;  
     position: relative;  
 }  
-.form-box h1::after{  
+.login-form-box h1::after{  
     content: '';  
     width: 50px;  
     height: 4px;  
@@ -75,11 +75,11 @@ input{
     color: #999;  
 }  
   
-form p{  
+.login-form p{  
     text-align: left;  
     font-size: 15px;  
 }  
-form p a{  
+.login-form p a{  
     text-decoration: none;  
     color: #3c00a0;  
 }  
