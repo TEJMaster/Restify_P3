@@ -6,8 +6,8 @@ import SignUpPage from './components/signuppage';
 import LoginPage from './components/loginpage';
 import LoggedMainPage from './components/loggedmainpage';
 import ProfilePage from './components/profilepage';
-import CommentPage from './components/commentpage';
-
+import Comment_property_Page from './components/propertycomment';
+import HostComment_Page from './components/hostcomment';
 
 function App() {
   
@@ -19,7 +19,8 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logged_main" element={<LoggedMainPage />} />
-          <Route path="/comment" element={<CommentPage />} />
+          <Route path="/comment_property" element={<Comment_property_Page />} />
+          <Route path="/comment_user" element={<HostComment_Page />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>

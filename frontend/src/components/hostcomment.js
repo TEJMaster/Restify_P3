@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './css/Comment.css';
+import './css/HostComment.css';
 
-const CommentPage = ({ propertyId }) => {
+const HostCommentPage = ({ targetUsername }) => {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
 
@@ -25,8 +25,9 @@ const CommentPage = ({ propertyId }) => {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        `http://localhost:8000/comments/comment/property/${propertyId}`,
+        `http://localhost:8000/comments/comment/user`,
         {
+          target_username: targetUsername,
           rate: rating,
           content: review,
         },
@@ -38,13 +39,13 @@ const CommentPage = ({ propertyId }) => {
         navigate('/some-page');
       }
     } catch (error) {
-      console.error('Error submitting the comment:', error);
+      console.error('Error submitting the host comment:', error);
     }
   };
 
   return (
-    <div className="write-review">
-      <h3>How was your experience? You can comment here:</h3>
+    <div className="write-host-review">
+      <h3>How was your experience with the user? You can comment here:</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="rating">Rating</label>
         <select
@@ -80,4 +81,4 @@ const CommentPage = ({ propertyId }) => {
   );
 };
 
-export default CommentPage;
+export default HostCommentPage;
