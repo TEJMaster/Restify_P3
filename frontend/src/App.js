@@ -9,6 +9,8 @@ import ProfilePage from './components/profilepage';
 import ReservationPage from './components/reservationpage';
 import MyPropertyPage from './components/mypropertypage';
 import CreateProperty from './components/createpropertypage';
+import Comment_property_Page from './components/propertycomment';
+import HostComment_Page from './components/hostcomment';
 
 
 function App() {
