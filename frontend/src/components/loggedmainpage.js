@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import NavBar from './navbar';
 import './css/LoggedMainPage.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const LoggedMainPage = () => {
+
+  const navigate = useNavigate();
+
   const [searchParams, setSearchParams] = useState({
     location: '',
     from_date: '',
@@ -26,6 +31,7 @@ const LoggedMainPage = () => {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     await fetchSearchResults(`http://localhost:8000/property/search/?${new URLSearchParams(searchParams).toString()}`);
+    console.log(searchResults);
   };
 
   const fetchSearchResults = async (url) => {
@@ -117,12 +123,13 @@ const LoggedMainPage = () => {
         </form>
         <div>
         {searchResults.map((result) => (
-          <div key={result.id} className="search-result">
+          <div key={result.name} className="search-result">
             <h3>{result.name}</h3>
             <p>{result.location}</p>
             {/* Display the first image of the property */}
             {result.images.length > 0 && (
               <img
+                key={result.images[0].image} 
                 src={result.images[0].image}
                 alt={`${result.name} property`}
                 className="property-image"
@@ -133,10 +140,10 @@ const LoggedMainPage = () => {
         <button
           className="view-button"
           onClick={() => {
-            /* Implement view property functionality here */
+            navigate(`/property/${result.name}`);
           }}>
-            View
-          </button>
+          View
+        </button>
         </div>
       ))}
 
