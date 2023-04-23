@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/NavBar.css';
 import logo from './images/nav_bar/web_logo.png';
@@ -9,11 +9,10 @@ import profileIcon from './images/nav_bar/profile.png';
 import messageIcon from './images/nav_bar/message.png';
 import logoutIcon from './images/nav_bar/logout.png';
 
-
 const NavBar = () => {
   const [userAvatar, setUserAvatar] = useState(null);
-
   const [userName, setUserName] = useState('');
+
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -26,26 +25,42 @@ const NavBar = () => {
         console.error('Error fetching user profile:', error);
       }
     };
-  
+
     fetchUserProfile();
   }, []);
-  
-
-
-//   const toggleBell = () => {
-//     document.getElementById('notify').classList.toggle('open-menu');
-//   };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    const dropdownMenu = document.querySelector(".sub-menu-wrap");
-    if (isDropdownOpen) {
-      dropdownMenu.classList.add("open");
-    } else {
-      dropdownMenu.classList.remove("open");
+  };
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('access_token');
+      const refreshToken = localStorage.getItem('refresh_token');
+  
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'X-Refresh-Token': refreshToken,
+      };
+  
+      await axios.post('http://localhost:8000/account/logout/', {}, {
+        withCredentials: true,
+        headers,
+      });
+  
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      navigate('/');
+    } catch (error) {
+      console.error('Error logging out:', error);
     }
   };
+  
+  
   
 
   return (
@@ -70,7 +85,6 @@ const NavBar = () => {
                 src={bellIcon}
                 className="bell"
                 alt="bell"
-                // onClick={toggleBell}
               />
             </li>
           </ul>
@@ -78,12 +92,10 @@ const NavBar = () => {
             src={userAvatar || defaultUserAvatar}
             className="user-pic"
             alt="user"
-            onClick={toggleDropdown}/>
+            onClick={toggleDropdown} />
 
-
-
-        {isDropdownOpen && (
-            <div className="sub-menu-wrap">
+          {isDropdownOpen && (
+            <div className={`sub-menu-wrap${isDropdownOpen ? " open" : ""}`}>
               <div className="sub-menu">
                 <div className="user-info">
                   <img src={userAvatar || defaultUserAvatar} alt="user" />
@@ -99,7 +111,7 @@ const NavBar = () => {
                   <img src={messageIcon} alt="comments" />
                   <p>Comments</p>
                 </Link>
-                <Link to="/home" className="sub-menu-link">
+                <Link onClick={handleLogout} className="sub-menu-link">
                   <img src={logoutIcon} alt="logout" />
                   <p>Logout</p>
                 </Link>

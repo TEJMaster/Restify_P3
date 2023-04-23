@@ -63,13 +63,13 @@
     width: 80%;
     overflow: hidden;  
 }  
-input{  
+/* input{  
     width: 100%;  
     background: transparent;  
     border: 0;  
     outline: 0;  
     padding: 18px 15px;  
-}  
+}   */
 .input-field i{  
     margin-left: 15px;  
     color: #999;  

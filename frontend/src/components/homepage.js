@@ -11,7 +11,7 @@ const HomePage = () => {
         <source src={videoSource} type="video/mp4" />
       </video>
 
-      <nav>
+      <nav className='home_nav'>
         <img src={logo} className="logo" alt="logo" />
         <ul>
           <li>
@@ -29,7 +29,7 @@ const HomePage = () => {
       <div className="content">
         <h1>WELCOME</h1>
         <Link to="/">
-          <span></span>SEARCH PROPERTIES
+          <span className='home_span'></span>SEARCH PROPERTIES
         </Link>
       </div>
     </div>

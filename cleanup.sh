@@ -10,6 +10,6 @@ find ./backend -type d -name "__pycache__" -exec rm -r "{}" +
 find ./backend -path "*/migrations/*.py" -not -name "__init__.py" -delete
 find ./backend -path "*/migrations/*.pyc" -delete
 
-# Remove the database file (assuming SQLite)
+# Remove the database file 
 rm -f ./backend/db.sqlite3
 

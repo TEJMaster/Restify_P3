@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .profile {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile_left,
+  .profile_right {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid #394159;
+    border-radius: 10px;
+    padding: 30px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F5F5F5;
+    box-sizing: border-box;
+  }
+  
+  .profile_left {
+    margin-right: 30px;
+  }
+  
+  .profile_pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-field {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .btn-field button {
+    text-decoration: none;
+    display: inline-block;
+    color: #394159;
+    font-size: 24px;
+    border: 2px solid #6C98C6;
+    padding: 10px 50px;
+    border-radius: 50px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-field button span {
+    background: #6C98C6;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+  }
+  
+  .btn-field button:hover span {
+    width: 100%;
+  }
+  
+  .input-pair {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    margin-bottom: 10px;
+  }
+  
+  .input-pair p {
+    margin: 10px;
+    min-width: 80px;
+  }
+  
+  .input-pair input {
+    width: 100%;  
+    background: transparent;  
+    border: 1px solid #394159;  
+    outline: 0;  
+    padding: 18px 15px;  
+  }
+  
+  @media only screen and (max-width: 1400px) {
+    .profile_left {
+      margin-right: 20px;
+    }
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .profile_left,
+    .profile_right {
+      width: calc(50% - 15px);
+    }
+    .profile_left {
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .profile {
+      flex-direction: column;
+    }
+    .profile_left,
+    .profile_right {
+      width: 100%;
+      margin: 0 0 30px 0;
+    }
+  }
+  
