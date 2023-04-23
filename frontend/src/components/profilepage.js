@@ -78,7 +78,7 @@ const ProfilePage = () => {
           <div className="profile_info">
             <h1>User Name: {username || ''}</h1>
           </div>
-          <div className="btn-field">
+          <div className="profile-btn-field">
             <button type="button" id="signinBtn">
               <span></span>Update Photo
             </button>
@@ -131,7 +131,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          <div className="btn-field">
+          <div className="profile-btn-field">
             <button type="button" id="signinBtn" onClick={handleUpdateProfile}>
               <span></span>{updateProfile}
             </button>
