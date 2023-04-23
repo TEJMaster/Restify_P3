@@ -102,7 +102,6 @@ const LoggedMainPage = () => {
                 value={searchParams.num_guests}
                 onChange={handleChange}
                 className="guest"
-                required
               >
                 <option value="">Select guests number</option>
                 <option value="1">1 guest</option>
@@ -149,13 +148,15 @@ const LoggedMainPage = () => {
             )}
 
             {/* View button */}
-        <button
-          className="view-button"
-          onClick={() => {
-            /* Implement view property functionality here */
-          }}>
-            View
-          </button>
+            <button
+              className="view-button"
+              onClick={() => {
+                navigate(`/property/${result.name}`);
+              }}
+            >
+              View
+            </button>
+
         </div>
       ))}
 
@@ -169,7 +170,7 @@ const LoggedMainPage = () => {
           </button>
         </div>
       </div>
-    </div>
+
   );
 };
 
