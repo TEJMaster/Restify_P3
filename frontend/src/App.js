@@ -6,6 +6,7 @@ import SignUpPage from './components/signuppage';
 import LoginPage from './components/loginpage';
 import LoggedMainPage from './components/loggedmainpage';
 import ProfilePage from './components/profilepage';
+import ReservationPage from './components/reservationpage';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logged_main" element={<LoggedMainPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/reservation" element={<ReservationPage />} />
         </Routes>
       </div>
     </Router>

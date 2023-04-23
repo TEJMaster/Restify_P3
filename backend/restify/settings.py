@@ -38,6 +38,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Property images
+PROPERTY_IMAGE_URL = '/property_images/'
+PROPERTY_IMAGE_ROOT = os.path.join(BASE_DIR, 'property_images')
+
 # Application definition
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
