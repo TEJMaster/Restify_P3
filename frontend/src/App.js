@@ -5,6 +5,7 @@ import HomePage from './components/homepage';
 import SignUpPage from './components/signuppage';
 import LoginPage from './components/loginpage';
 import LoggedMainPage from './components/loggedmainpage';
+import CommentPage from './components/commentpage';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logged_main" element={<LoggedMainPage />} />
+          <Route path="/comment" element={<CommentPage />} />
         </Routes>
       </div>
     </Router>
