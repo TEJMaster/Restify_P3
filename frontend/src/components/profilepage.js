@@ -64,6 +64,30 @@ const ProfilePage = () => {
       }
     }
   };
+
+  const handleAvatarChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('avatar', file);
+  
+    try {
+      const token = localStorage.getItem('access_token');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      };
+      const response = await axios.put('http://localhost:8000/account/profile/', formData, { headers });
+      const updatedProfile = { ...profile, avatar: `http://localhost:8000${response.data.avatar}` };
+      setProfile(updatedProfile);
+    } catch (error) {
+      console.error('Error uploading avatar:', error);
+    }
+  };
+  
   
   const { username, email, first_name, last_name, avatar, phone_number } = profile;
 
@@ -79,10 +103,18 @@ const ProfilePage = () => {
             <h1>User Name: {username || ''}</h1>
           </div>
           <div className="profile-btn-field">
-            <button type="button" id="signinBtn">
-              <span></span>Update Photo
-            </button>
-          </div>
+          <label htmlFor="avatarInput" className="upload-avatar-label">
+            <span></span>Update Photo
+          </label>
+          <input
+            type="file"
+            id="avatarInput"
+            className="avatar-input"
+            onChange={handleAvatarChange}
+            style={{ display: 'none' }}
+            accept="image/*"
+          />
+        </div>
         </div>
 
         <div className="profile_right">

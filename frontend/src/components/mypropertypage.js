@@ -37,25 +37,30 @@ const MyPropertyPage = () => {
   
 
   const deleteProperty = async (propertyName) => {
-    const response = await fetch(`http://localhost:8000/property/delete/${propertyName}/`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    const confirmed = window.confirm("Are you sure you want to delete this property? This action cannot be undone.");
   
-    if (response.ok) {
-      setProperties((prevProperties) => {
-        const updatedResults = prevProperties.results.filter(
-          (property) => property.name !== propertyName
-        );
-        return { ...prevProperties, results: updatedResults };
+    if (confirmed) {
+      const response = await fetch(`http://localhost:8000/property/delete/${propertyName}/`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+          'Content-Type': 'application/json',
+        },
       });
-    } else {
-      console.error('Error deleting property:', response.statusText);
+  
+      if (response.ok) {
+        setProperties((prevProperties) => {
+          const updatedResults = prevProperties.results.filter(
+            (property) => property.name !== propertyName
+          );
+          return { ...prevProperties, results: updatedResults };
+        });
+      } else {
+        console.error('Error deleting property:', response.statusText);
+      }
     }
   };
+  
   
 
   return (

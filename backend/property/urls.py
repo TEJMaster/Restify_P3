@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PropertyCreateAPIView, PropertyUpdateAPIView, PropertyListAPIView, PropertyDeleteAPIView, PropertySearchView, CheckUniquePropertyName, PropertyDetail, UserPropertiesView
+from .views import PropertyCreateAPIView, PropertyUpdateAPIView, PropertyListAPIView, PropertyDeleteAPIView, PropertySearchView, CheckUniquePropertyName, PropertyDetail, UserPropertiesView, PropertyImageDeleteAPIView
 
 urlpatterns = [
     path('create/', PropertyCreateAPIView.as_view(), name='property_create'),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('my_property/', UserPropertiesView.as_view(), name='my_property'),
     path('<str:name>/', PropertyDetail.as_view(), name='property_detail'),
     # path('id/<int:id>/', PropertyDetailByID.as_view(), name='property_detail_by_id'),
+    path('image/<int:id>/delete/', PropertyImageDeleteAPIView.as_view(), name='property-image-delete'),
 ]

@@ -15,9 +15,6 @@ const HomePage = () => {
         <img src={logo} className="logo" alt="logo" />
         <ul>
           <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
             <Link to="/signup">SIGN UP</Link>
           </li>
           <li>
@@ -28,7 +25,7 @@ const HomePage = () => {
 
       <div className="content">
         <h1>WELCOME</h1>
-        <Link to="/">
+        <Link to="/login">
           <span className='home_span'></span>SEARCH PROPERTIES
         </Link>
       </div>

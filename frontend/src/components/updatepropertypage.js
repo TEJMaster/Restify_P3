@@ -9,6 +9,7 @@ const UpdateProperty = () => {
   const [property, setProperty] = useState(null);
   const startDateRef = useRef(null);
   const endDateRef = useRef(null);
+  const [propertyImages, setPropertyImages] = useState([]);
 
   useEffect(() => {
     fetchProperty();
@@ -25,10 +26,31 @@ const UpdateProperty = () => {
     if (response.ok) {
       const data = await response.json();
       setProperty(data);
+      setPropertyImages(data.images);
     } else {
       console.error('Error fetching property:', response.statusText);
     }
   };
+
+const handleImageDelete = async (imageId) => {
+    try {
+      const response = await fetch(`http://localhost:8000/property/image/${imageId}/delete/`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+
+      if (response.ok) {
+        // Remove the image from the property images state
+        setPropertyImages((prevImages) => prevImages.filter((image) => image.id !== imageId));
+      } else {
+        console.error('Error deleting image:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting image:', error);
+    }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,7 +117,7 @@ const UpdateProperty = () => {
       <NavBar />
       <div className="UpdateProperty">
         <h1>Update Property</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} enctype="multipart/form-data">
           <div className="form-group">
             <div className="label-input">
               <label htmlFor="owner_first_name">Owner First Name:</label>
@@ -162,6 +184,16 @@ const UpdateProperty = () => {
                 required
               />
             </div>
+            
+            <div className="property-images">
+              {propertyImages.map((image) => (
+                <div key={image.id} className="property-image">
+                  <img src={image.image} alt="property" />
+                  <button type="button" onClick={() => handleImageDelete(image.id)}>Delete</button>
+                </div>
+              ))}
+            </div>
+
 
             <div className="label-input">
               <label htmlFor="images">Upload Images:</label>
@@ -171,7 +203,6 @@ const UpdateProperty = () => {
                 accept="image/*"
                 name="images"
                 multiple
-                required
                 onChange={validateImages}
               />
             </div>

@@ -67,14 +67,36 @@ class PropertyUpdateAPIView(UpdateAPIView):
         if request.user != property_instance.owner:
             raise PermissionDenied("You can only view your own properties.")
         serializer = self.get_serializer(property_instance)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-        
+        property_data = serializer.data
+        return Response(property_data, status=status.HTTP_200_OK)
     
     def perform_update(self, serializer):
         property_instance = self.get_object()
         if self.request.user != property_instance.owner:
             raise PermissionDenied("You can only update your own properties.")
+
+        # Save the property instance
         serializer.save()
+
+        # Handle image upload
+        if self.request.FILES.getlist('images'):
+            for image in self.request.FILES.getlist('images'):
+                # Add a timestamp to the original image file name
+                timestamp = int(time.time())
+                image.name = f"{timestamp}_{image.name}"
+                
+                PropertyImage.objects.create(property=property_instance, image=image)
+        else:
+            existing_images = PropertyImage.objects.filter(property=property_instance)
+            if not existing_images.exists():
+                default_image_path = os.path.join(os.path.dirname(__file__), 'default_images/default_property_image.jpg')
+                image_name = f"{int(time.time())}_default_property_image.jpg"
+                with open(default_image_path, 'rb') as f:
+                    content = ContentFile(f.read())
+                    new_path = default_storage.save(f'property_images/{image_name}', content)
+                    PropertyImage.objects.create(property=property_instance, image=new_path)
+
+
 
 
 class PropertyListAPIView(ListAPIView):
@@ -171,3 +193,27 @@ class UserPropertiesView(generics.ListAPIView):
         return Property.objects.filter(owner_id=user.id)
 
 
+class PropertyImageDeleteAPIView(DestroyAPIView):
+    queryset = PropertyImage.objects.all()
+    lookup_field = 'id'
+
+    def perform_destroy(self, instance):
+        property_instance = instance.property
+        if self.request.user != property_instance.owner:
+            raise PermissionDenied("You can only delete images of your own properties.")
+        
+        # Check if there's only one image associated with the property
+        if PropertyImage.objects.filter(property=property_instance).count() == 1:
+            # If there's only one image, create a new PropertyImage object with the default image
+            default_image_path = os.path.join(os.path.dirname(__file__), 'default_images/default_property_image.jpg')
+            image_name = f"{int(time.time())}_default_property_image.jpg"
+            with open(default_image_path, 'rb') as f:
+                content = ContentFile(f.read())
+                new_path = default_storage.save(f'property_images/{image_name}', content)
+                PropertyImage.objects.create(property=property_instance, image=new_path)
+
+            # Delete the existing image
+            instance.delete()
+        else:
+            # If there's more than one image, delete the specified image
+            instance.delete()
