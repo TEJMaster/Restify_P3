@@ -1,47 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// const PropertyDetail = (props) => {
-//   const [property, setProperty] = useState(null);
-//   const { name } = useParams();
-
-//   useEffect(() => {
-//     fetchProperty(name);
-//   }, [name]);
-
-//   const fetchProperty = async (name) => {
-//     const response = await fetch(`http://localhost:8000/property/${name}/`);
-//     if (response.ok) {
-//       const data = await response.json();
-//       setProperty(data); // Remove ".results[0]" from this line
-//     } else {
-//       console.error('Error fetching property details:', response.statusText);
-//     }
-//   };
-  
-
-//   if (!property) return <div>Loading...</div>;
-
-//   return (
-//     <div>
-//       <h2>{property.name}</h2>
-//       <p>{property.location}</p>
-//       <p>Price: {property.price}</p>
-//       <p>Guests: {property.guests}</p>
-//       <p>Amenities: {property.amenities}</p>
-//       {property.images.map((image) => (
-//         <img
-//           key={image.image}
-//           src={image.image}
-//           alt={`${property.name} property`}
-//           className="property-image"
-//         />
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default PropertyDetail;
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -50,12 +6,11 @@ import axios from 'axios';
 
 const PropertyDetail = (props) => {
   const [property, setProperty] = useState(null);
+  const [comments, setComments] = useState([]);
   const { name } = useParams();
 
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
-  const [comment, setComment] = useState('');
-  const [propertyId, setPropertyId] = useState('');
 
   useEffect(() => {
     fetchProperty(name);
@@ -65,11 +20,27 @@ const PropertyDetail = (props) => {
     const response = await fetch(`http://localhost:8000/property/${name}/`);
     if (response.ok) {
       const data = await response.json();
+      console.log('Property data:', data); // Add this line
       setProperty(data);
+      fetchComments(data.id); // Check if the property name is correct
     } else {
       console.error('Error fetching property details:', response.statusText);
     }
   };
+  
+
+  const fetchComments = async (propertyId) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/comments/view/property/${propertyId}`);
+      if (response.status === 200) {
+        console.log('Response data:', response.data);
+        setComments(response.data.results);
+      }
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  };
+  
   
 
 
@@ -81,9 +52,7 @@ const PropertyDetail = (props) => {
     setCheckOut(e.target.value);
   };
 
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
-  };
+
 
   const handleReservationSubmit = async (e) => {
     e.preventDefault();
@@ -120,10 +89,6 @@ const PropertyDetail = (props) => {
   };
   
 
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    // Implement your comment logic here
-  };
 
   if (!property) return <div>Loading...</div>;
 
@@ -158,14 +123,19 @@ const PropertyDetail = (props) => {
           <button type="submit">Book Now</button>
         </form>
       </div>
-      <div className="write-review">
-        <h3>Leave a Comment</h3>
-        <form className="comment-form" onSubmit={handleCommentSubmit}>
-          <label htmlFor="comment">Comment:</label>
-          <textarea id="comment" name="comment" rows="4" onChange={handleCommentChange}></textarea>
-          <button type="submit">Submit Comment</button>
-        </form>
-      </div>
+
+      <div className="comment">
+      <h3>Comments:</h3>
+      {comments.map((comment) => (
+        <div key={comment.id} className="comment-item">
+          <p>
+          <strong>{comment.user}:</strong> {comment.content}
+
+          </p>
+          <p>Rating: {comment.rate} stars</p>
+        </div>
+      ))}
+    </div>
     </div>
   );
 };
