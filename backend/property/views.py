@@ -22,6 +22,7 @@ from django.core import serializers
 from rest_framework import generics
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from reservation.models import Reservation
 # Create your views here.
 
 class PropertyCreateAPIView(CreateAPIView):
@@ -93,6 +94,12 @@ class PropertyDeleteAPIView(DestroyAPIView):
     def perform_destroy(self, instance):
         if self.request.user != instance.owner:
             raise PermissionDenied("You can only delete your own properties.")
+
+        # reservations_to_cancel = Reservation.objects.filter(property=instance)
+        # for reservation in reservations_to_cancel:
+        #     reservation.state = 'Canceled'
+        #     reservation.save()
+            
         instance.delete()
 
 
