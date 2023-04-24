@@ -8,10 +8,15 @@ import defaultUserAvatar from './images/user.png';
 import profileIcon from './images/nav_bar/profile.png';
 import messageIcon from './images/nav_bar/message.png';
 import logoutIcon from './images/nav_bar/logout.png';
+import NotificationList from './NotificationList';
 
 const NavBar = () => {
   const [userAvatar, setUserAvatar] = useState(null);
   const [userName, setUserName] = useState('');
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const toggleNotification = () => {
+    setIsNotificationOpen(!isNotificationOpen);
+  };
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -85,7 +90,12 @@ const NavBar = () => {
                 src={bellIcon}
                 className="bell"
                 alt="bell"
-              />
+                onClick={toggleNotification} />
+              {isNotificationOpen && (
+                <div className={`notification-menu-wrap${isNotificationOpen ? " open" : ""}`}>
+                  <NotificationList />
+                </div>
+              )}
             </li>
           </ul>
           <img

@@ -1,0 +1,18 @@
+.notification-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .notification-item:last-child {
+    border-bottom: none;
+  }
+  
+  .notification-item h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .notification-item p {
+    font-size: 14px;
+    margin: 0;
+  }
