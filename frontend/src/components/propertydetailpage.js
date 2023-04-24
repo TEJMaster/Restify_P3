@@ -122,13 +122,7 @@ const PropertyDetail = (props) => {
     <NavBar />
     <div className="container">
       <h2 className="prop-title">{property.name}</h2>
-      <p>{property.location}</p>
-      <p>Price: {property.price}</p>
-      <p>Guests: {property.guests}</p>
-      <p>Amenities: {property.amenities}</p>
-      <p>Avaliable dates: 
-        {property.from_date} - {property.to_date}
-      </p>
+      <p>Location: {property.location}</p>
       <div className="picture">
         {property.images.map((image) => (
           <img
@@ -139,31 +133,50 @@ const PropertyDetail = (props) => {
           />
         ))}
       </div>
+      
+      <div class="list-details">
+            <h2>Hosted by {property.owner_first_name}</h2>
+            <p>{property.guests} guest / {property.number_of_bedrooms} bed / {property.number_of_washrooms} bathroom</p>
+            
+            <p>Amenities: {property.amenities}</p>
+            <p>Avaliable dates: {property.from_date} - {property.to_date}
+            </p>
+            <h4>$ {property.price} / day</h4>
+      </div>
+      
+      
       <div className="reservation">
         <h3>Make a Reservation</h3>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form className="reservation-form" onSubmit={handleReservationSubmit}>
+          <div>
           <label htmlFor="checkIn">Check-in:</label>
           <input type="date" id="checkIn" name="checkIn" onChange={handleCheckInChange} />
+          </div>
+          <div>
           <label htmlFor="checkOut">Check-out:</label>
           <input type="date" id="checkOut" name="checkOut" onChange={handleCheckOutChange} />
-          
+          </div>
           <button type="submit">Book Now</button>
         </form>
       </div>
 
       <div className="comment">
           <h3>Comments:</h3>
+          <div class="review-details">
           {comments.map((comment) => (
             <div key={comment.id} className="comment-item">
-              <p>
-                <strong>{comment.user}:</strong> {comment.content}
+              <p className='comment-user'>
+                <strong>
+                  {comment.user}:</strong> 
               </p>
-              <p>Rating: {comment.rate} stars</p>
-              <p>Created at: {comment.created_at}</p>
+              <h2>Reviewed on {comment.created_at}</h2>
+              <p className='ratings'>Rating: {comment.rate} stars</p>
+              <h4>{comment.content}</h4>
             </div>
           ))}
-        </div>
+          </div>
+      </div>
         <div className="pagination">
           <button onClick={handlePrevPage} disabled={!prevPage}>
             Previous
