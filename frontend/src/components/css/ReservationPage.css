@@ -227,42 +227,8 @@
 	cursor: pointer;
   }
   
-  .pagination {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 20px 0;
-  }
   
-  .pagination button {
-	border: 1px solid #e4e4e4;
-	background-color: #fff;
-	color: #222;
-	font-weight: 600;
-	padding: 8px 12px;
-	margin: 0 2px;
-	cursor: pointer;
-	font-size: 14px;
-	line-height: 1.2;
-	border-radius: 4px;
-	transition: background-color 0.3s;
-  }
-  
-  .pagination button:hover {
-	background-color: #f7f7f7;
-  }
-  
-  .pagination button.active {
-	background-color: #222;
-	color: #fff;
-  }
-  
-  .pagination button.prev,
-  .pagination button.next {
-	background-color: transparent;
-  }
 
-  
 .host-stays {
 	padding: 20px 20px;
 	background-color: #f8f8f8;
@@ -334,8 +300,12 @@
   .deny-cancel-button:hover {
 	background-color: #f3722c;
   }
+
+  .reservation-page-container {
+	display: flex;
+  }
   
-  .pagination-button {
+  .reservation-pagination-button {
 	background-color: #f1c40f;
 	border: none;
 	color: white;
@@ -350,12 +320,12 @@
 	transition: background-color 0.3s, color 0.3s;
   }
   
-  .pagination-button:hover {
+  .reservation-pagination-button:hover {
 	background-color: #e67e22;
 	color: white;
   }
   
-  .pagination-button:disabled {
+  .reservation-pagination-button:disabled {
 	background-color: #bdc3c7;
 	color: #7f8c8d;
 	cursor: not-allowed;
@@ -367,5 +337,76 @@
   
   .next {
 	float: right;
+  }
+  
+
+
+@media only screen and (max-width: 768px) {
+	.banner-text h1 {
+	  font-size: 36px;
+	}
+  
+	.banner-text p {
+	  font-size: 18px;
+	}
+  
+	.my-stays h2, .host-stays h2 {
+	  font-size: 28px;
+	}
+  
+	.stay {
+	  flex-wrap: wrap;
+	}
+  
+	.stay-image {
+	  width: 100%;
+	  height: auto;
+	  margin-right: 0;
+	  margin-bottom: 16px;
+	}
+  
+	.stay-details {
+	  flex: 1 100%;
+	}
+  
+	.button-state-container, .host-button-state-container {
+	  align-items: center;
+	}
+  }
+  
+  @media only screen and (max-width: 480px) {
+	.banner-text h1 {
+	  font-size: 28px;
+	}
+  
+	.banner-text p {
+	  font-size: 16px;
+	}
+  
+	.my-stays h2, .host-stays h2 {
+	  font-size: 24px;
+	}
+  
+	.stay h3 {
+	  font-size: 18px;
+	}
+  
+	.stay p {
+	  font-size: 14px;
+	}
+  
+	.reservation-filter label {
+	  font-size: 14px;
+	}
+  
+	.reservation-filter select {
+	  font-size: 14px;
+	  padding: 6px 10px;
+	}
+  
+	.pagination button {
+	  padding: 6px 10px;
+	  font-size: 12px;
+	}
   }
   

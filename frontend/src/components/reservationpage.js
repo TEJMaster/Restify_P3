@@ -417,14 +417,14 @@ const ReservationPage = () => {
     </div>
   ))}
 </section>
-    
-<button className="pagination-button previous" onClick={loadPrevious} disabled={!previousPage}>
+<div className='reservation-page-container'>
+<button className="reservation-pagination-button previous" onClick={loadPrevious} disabled={!previousPage}>
   Previous
 </button>
-<button className="pagination-button next" onClick={loadNext} disabled={!nextPage}>
+<button className="reservation-pagination-button next" onClick={loadNext} disabled={!nextPage}>
   Next
 </button>
-
+</div>
       
     </div>
     
