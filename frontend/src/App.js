@@ -13,6 +13,7 @@ import PropertyCommentPage from './components/propertycomment';
 import HostCommentPage from './components/hostcomment';
 import PropertyDetail from './components/propertydetailpage';
 import UpdateProperty from './components/updatepropertypage';
+import NotificationPage from './components/notificationpage';
 
 function App() {
   
@@ -32,6 +33,7 @@ function App() {
           <Route path="/comment_user/:targetUsername" element={<HostCommentPage />} />
           <Route path="/property/:name" element={<PropertyDetail />} />
           <Route path="/update_property/:name" element={<UpdateProperty />} />
+          <Route path="/notificationpage" element={<NotificationPage />} />
         </Routes>
       </div>
     </Router>
