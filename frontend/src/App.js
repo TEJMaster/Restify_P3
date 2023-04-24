@@ -28,7 +28,7 @@ function App() {
           <Route path="/reservation" element={<ReservationPage />} />
           <Route path="/my_property" element={<MyPropertyPage />} />
           <Route path="/create_property" element={<CreateProperty />} />
-          <Route path="/comment_property/:propertyName" element={<PropertyCommentPage />} />
+          <Route path="/comment_property/:id" element={<PropertyCommentPage />} />
           <Route path="/comment_user/:targetUsername" element={<HostCommentPage />} />
           <Route path="/property/:name" element={<PropertyDetail />} />
           <Route path="/update_property/:name" element={<UpdateProperty />} />

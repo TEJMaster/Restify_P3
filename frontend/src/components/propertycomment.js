@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './css/PropertyComment.css';
-
 
 const PropertyCommentPage = () => {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
-  const { propertyName } = useParams();
-  const [propertyId, setPropertyId] = useState(null);
+  const { id } = useParams(); // Get the property ID from the URL
+  const propertyId = id; // Directly use the property ID
 
-  console.log('propertyName:', propertyName);
-
+  console.log('propertyId:', propertyId);
 
   const handleRatingChange = (e) => {
     setRating(e.target.value);
@@ -22,22 +20,6 @@ const PropertyCommentPage = () => {
   };
 
   const navigate = useNavigate();
-  
-  const fetchPropertyDetails = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8000/property/${propertyName}`);
-      if (response.status === 200) {
-        setPropertyId(response.data.id);
-      }
-    } catch (error) {
-      console.error('Error fetching property details:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPropertyDetails();
-  }, []);
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +36,6 @@ const PropertyCommentPage = () => {
         },
         { headers }
       );
-      
 
       if (response.status === 201) {
         // Navigate the user to the desired page after successful submission

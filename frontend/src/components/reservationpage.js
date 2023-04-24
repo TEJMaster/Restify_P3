@@ -273,7 +273,7 @@ const ReservationPage = () => {
         <button
           className="guest-comment-button"
           onClick={() =>
-            navigate(`/comment_property/${reservation.property.name}`)
+            navigate(`/comment_property/${reservation.id}`)
           }
         >
           Comment
