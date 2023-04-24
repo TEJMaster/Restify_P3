@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/PropertyComment.css';
 
-const CommentPage = ({ propertyId }) => {
+const PropertyCommentPage = ({ propertyName }) => {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
 
@@ -25,7 +25,7 @@ const CommentPage = ({ propertyId }) => {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        `http://localhost:8000/comments/comment/property/${propertyId}`,
+        `http://localhost:8000/comments/comment/property/${propertyName}`,
         {
           rate: rating,
           content: review,
@@ -80,4 +80,4 @@ const CommentPage = ({ propertyId }) => {
   );
 };
 
-export default CommentPage;
+export default PropertyCommentPage;

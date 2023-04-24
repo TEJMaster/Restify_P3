@@ -9,8 +9,8 @@ import ProfilePage from './components/profilepage';
 import ReservationPage from './components/reservationpage';
 import MyPropertyPage from './components/mypropertypage';
 import CreateProperty from './components/createpropertypage';
-import Comment_property_Page from './components/propertycomment';
-import HostComment_Page from './components/hostcomment';
+import PropertyCommentPage from './components/propertycomment';
+import HostCommentPage from './components/hostcomment';
 import PropertyDetail from './components/propertydetailpage';
 import UpdateProperty from './components/updatepropertypage';
 
@@ -28,8 +28,8 @@ function App() {
           <Route path="/reservation" element={<ReservationPage />} />
           <Route path="/my_property" element={<MyPropertyPage />} />
           <Route path="/create_property" element={<CreateProperty />} />
-          <Route path="/comment_property" element={<Comment_property_Page />} />
-          <Route path="/comment_user" element={<HostComment_Page />} />
+          <Route path="/comment_property/:propertyName" element={<PropertyCommentPage />} />
+          <Route path="/comment_user/:targetUsername" element={<HostCommentPage />} />
           <Route path="/property/:name" element={<PropertyDetail />} />
           <Route path="/update_property/:name" element={<UpdateProperty />} />
         </Routes>
