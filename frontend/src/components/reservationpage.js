@@ -38,7 +38,9 @@ const ReservationPage = () => {
         try {
           const token = localStorage.getItem('access_token');
           const headers = { Authorization: `Bearer ${token}` };
-          const response = await axios.get(url, { headers });
+
+          const apiUrl = selectedState ? `${url}?state=${selectedState}` : url;
+          const response = await axios.get(apiUrl, { headers });
     
           const tokenParts = token.split('.');
           const tokenPayload = tokenParts[1];
@@ -69,7 +71,8 @@ const ReservationPage = () => {
             const token = localStorage.getItem("access_token");
             const headers = { Authorization: `Bearer ${token}` };
 
-            const response = await axios.get(url, { headers });
+            const apiUrl = selectedState ? `${url}?state=${selectedState}` : url;
+            const response = await axios.get(apiUrl, { headers });
 
             const tokenParts = token.split('.');
             const tokenPayload = tokenParts[1];

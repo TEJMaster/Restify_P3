@@ -42,6 +42,7 @@ class ReservationViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = ReservationPagination
     filter_backends = [DjangoFilterBackend]
     filterset_class = ReservationFilter
+    filterset_fields = ['state']
     queryset = Property.objects.all().prefetch_related('images')
     
     def get_queryset(self):
