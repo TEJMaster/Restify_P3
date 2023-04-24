@@ -216,7 +216,7 @@ const ReservationPage = () => {
 
     
 
-    async function handleHostAction(reservationId, action) {
+    async function handleHostAction(reservationId, action, targetUsername) {
       try {
         const token = localStorage.getItem("access_token");
         const headers = { Authorization: `Bearer ${token}` };
@@ -405,13 +405,14 @@ const ReservationPage = () => {
         {reservation.state === "Terminated" && (
           <>
           <button
-          className="guest-comment-button"
-          onClick={() =>
-            navigate(`/comment_user/${reservation.user_id}`)
-          }
-        >
-          Comment the guest
-        </button>
+            className="guest-comment-button"
+            onClick={() =>
+              navigate(`/comment_user/${reservation.user}`)
+            }
+          >
+            Comment the guest
+          </button>
+
           </>
         )}
         <p className="reservation-state">{reservation.state}</p>

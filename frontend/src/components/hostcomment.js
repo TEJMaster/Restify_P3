@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './css/HostComment.css';
 
-const HostCommentPage = ({ targetUsername }) => {
+const HostCommentPage = () => {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
+
+  const { targetuserid } = useParams(); // Extract the user ID from the URL
+  const navigate = useNavigate();
 
   const handleRatingChange = (e) => {
     setRating(e.target.value);
@@ -15,8 +18,6 @@ const HostCommentPage = ({ targetUsername }) => {
     setReview(e.target.value);
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,9 +26,8 @@ const HostCommentPage = ({ targetUsername }) => {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        `http://localhost:8000/comments/comment/user`,
+        `http://localhost:8000/comments/comment/user/${targetuserid}`, // Use the user ID in the API endpoint URL
         {
-          target_username: targetUsername,
           rate: rating,
           content: review,
         },
