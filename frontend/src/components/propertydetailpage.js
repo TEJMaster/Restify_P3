@@ -94,60 +94,81 @@ const PropertyDetail = (props) => {
     }
   };
   
-  
-
 
   if (!property) return <div>Loading...</div>;
 
   return (
     <>
-    <NavBar />
-    <div className="container">
-      <h2 className="prop-title">{property.name}</h2>
-      <p>{property.location}</p>
-      <p>Price: {property.price}</p>
-      <p>Guests: {property.guests}</p>
-      <p>Amenities: {property.amenities}</p>
-      <p>Avaliable dates: 
-        {property.from_date} - {property.to_date}
-      </p>
-      <div className="picture">
-        {property.images.map((image) => (
-          <img
-            key={image.image}
-            src={image.image}
-            alt={`${property.name} property`}
-            className="property-image"
-          />
+      <NavBar />
+      <div className="props">
+        <div className="prop-title">
+          <h1>{property.name}</h1>
+          <div className="row">
+            <div>
+              <span>{comments.length} Reviews</span>
+            </div>
+            <div>
+              <p>Location: {property.location}</p>
+            </div>
+          </div>
+        </div>
+        <div className="picture">
+          {property.images.map((image) => (
+            <img
+              key={image.image}
+              src={image.image}
+              alt={`${property.name} property`}
+              className="property-image"
+            />
+          ))}
+        </div>
+        <div className="list-details-container">
+        <div className="list-details">
+          <h2>Hosted by {property.host}</h2>
+          <p>{property.guests} guest / {property.bedrooms} bed / {property.bathrooms} bathroom</p>
+          <p>{property.location}</p>
+          
+        </div>
+        <div className="list-details">
+          
+          <p>Price: {property.price}</p>
+          <p>Amenities: {property.amenities}</p>
+          <p>Avaliable dates: 
+            {property.from_date} - {property.to_date}
+          </p>
+          <h4>$ {property.price} / day</h4>
+        </div>
+        
+        </div>
+        <hr className="line" />
+        <form className="checkin-form" onSubmit={handleReservationSubmit}>
+          <div className="reservation-input">
+            <label>Check-in</label>
+            <input type="date" name="checkIn" onChange={handleCheckInChange} />
+          </div>
+          <div className="reservation-input">
+            <label>Check-out</label>
+            <input type="date" name="checkOut" onChange={handleCheckOutChange} />
+          </div>
+          <button type="submit" className="submit-button">Reservation</button>
+        </form>
+        <hr className="line" />
+        {comments.map((comment) => (
+          <div key={comment.id} className="review-card">
+            <div className="user-info">
+              <img src={comment.user_avatar} alt="Avatar" />
+              <h3>{comment.user}</h3>
+            </div>
+            <div className="review-details">
+              <p className="review-date">Reviewed on {comment.created_at}</p>
+              <div className="prop-info">
+                {/* Render the stars according to the comment.rate value */}
+              </div>
+              <p className="review-text">{comment.content}</p>
+            </div>
+          </div>
         ))}
       </div>
-      <div className="reservation">
-        <h3>Make a Reservation</h3>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <form className="reservation-form" onSubmit={handleReservationSubmit}>
-          <label htmlFor="checkIn">Check-in:</label>
-          <input type="date" id="checkIn" name="checkIn" onChange={handleCheckInChange} />
-          <label htmlFor="checkOut">Check-out:</label>
-          <input type="date" id="checkOut" name="checkOut" onChange={handleCheckOutChange} />
-          
-          <button type="submit">Book Now</button>
-        </form>
-      </div>
-
-      <div className="comment">
-      <h3>Comments:</h3>
-      {comments.map((comment) => (
-        <div key={comment.id} className="comment-item">
-          <p>
-          <strong>{comment.user}:</strong> {comment.content}
-
-          </p>
-          <p>Rating: {comment.rate} stars</p>
-          <p>Created at: {comment.created_at}</p>
-        </div>
-      ))}
-    </div>
-    </div>
     </>
   );
 };
