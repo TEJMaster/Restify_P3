@@ -1,148 +1,221 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
 .container {
-  padding: 0 95px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 2rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 .prop-title {
-  margin-bottom: 1em;
+  font-size: 2em;
+  font-weight: 500;
+  color: #484848;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.container p{
+  text-align: justify;
 }
 
 .picture {
-  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.image-wrapper {
-  flex: 1;
-  margin: 0 5px;
+.list-details h2{
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.list-details h4{
+  text-align: right;
+  font-size: 22px;
 }
 
 .property-image {
-  max-width: 40%;
-  border-radius: 12px;
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .reservation {
-  background-color: lightgray;
-  padding: 1em;
-  margin-bottom: 2em;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.reservation-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-.reservation-form input[type="date"] {
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.reservation-form button {
-  padding: 0.5em 1em;
-  background-color: #ff5361;
-  color: white;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.reservation-form button:hover {
-  background-color: #ff5351;
-  color: #333333;
-  text-decoration: none;
-}
-
-.comment {
-  margin-bottom: 2em;
-}
-
-.comment-item {
-  margin-bottom: 1em;
-}
-
-.error-message {
-  color: red;
-  margin-bottom: 1em;
-}
-
-.checkin-form {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
-
-.reservation-input {
-  display: flex;
-  flex-direction: column;
-}
-
-.checkin-form input[type="date"] {
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.submit-button {
-  padding: 0.5em 1em;
-  background-color: #ff5361;
-  color: white;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.submit-button:hover {
-  background-color: #ff5351;
-  color: #333333;
-  text-decoration: none;
-}
-
-.property-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-}
-
-.list-details-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
 }
 
-.list-details {
-  flex: 1;
-  padding-right: 2rem;
+.reservation h3 {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #ad123a;
+  margin-bottom: 0px;
 }
 
-.host-image-container {
-  flex: 1;
+.reservation-form {
+  margin: 35px 0;
+  background: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reservation-form div{
+  padding: 20px;
+}
+
+.reservation-form label{
+  display: block;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.reservation-form input{
+  border: 0;
+}
+
+.reservation-form button {
+  background: #ff5361;
+  border: 0;
+  color: white;
+  padding: 17px;
+  width: 300px;
+  border-radius: 7px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: dashed;
+  cursor: pointer;
+  margin: 20px 0;
+  margin-right: 40px;
+}
+
+.reservation-form button:hover {
+  background-color: #d93940;
+}
+
+.error-message {
+  color: #d93940;
+  font-weight: 500;
+}
+
+.comment {
+  margin-bottom: 1rem;
+}
+
+.comment h3{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 25px;
+  color: #d93940;
+}
+.comment h2{
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 12px;
+}
+
+.comment-user{
+  font-size: 20px;
+  text-align: left;
+  color: lightcoral;
+}
+
+.ratings{
+  font-size: 15px;
+  text-align: left;
+  color: lightcoral;
+}
+
+.comment h4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 20px;
+}
+
+.comment-item {
+  background-color: #f7f7f7;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 1rem;
 }
 
-.host-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.pagination button {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #f7f7f7;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .prop-title {
+    font-size: 1.75em;
+  }
+
+  .property-image {
+    max-width: 100%;
+  }
+
+  .reservation-form {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .reservation-form div {
+    padding: 10px;
+  }
+
+  .reservation-form button {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .prop-title {
+    font-size: 1.5em;
+  }
+
+  .reservation h3 {
+    font-size: 1.25em;
+  }
+
+  .reservation-form label {
+    font-size: 14px;
+  }
+
+  .reservation-form button {
+    padding: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 }

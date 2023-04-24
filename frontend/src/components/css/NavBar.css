@@ -159,22 +159,30 @@ nav ul li{
     font-weight: 600;  
 }  
   
-@media only screen and (max-width: 800px){  
-    nav {  
-        display: block;  
-        text-align: center;  
-    }  
-    nav ul{  
-        display: block;  
-        text-align: center;  
-    }  
+@media only screen and (max-width: 800px) {
+    .nav-bar {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .nav-bar ul {
+      text-align: center;
+      padding-top: 10px;
+    }
   
-    .sub-menu-wrap{  
-       top: 100%;  
+    nav ul li {
+      margin: 5px 10px;
+    }
   
-    }  
-    .notify-wrap{  
-       top: 100%;  
-         
-    }  
-}  
+    .sub-menu-wrap {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+    .notify-wrap {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
