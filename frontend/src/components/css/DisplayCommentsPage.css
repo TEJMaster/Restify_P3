@@ -91,3 +91,44 @@
   border-color: transparent;
   cursor: not-allowed;
 }
+
+/* Responsive design */
+@media only screen and (max-width: 768px) {
+  .comments-heading {
+    font-size: 2rem;
+  }
+
+  .comment-author {
+    font-size: 1.1rem;
+  }
+
+  .comment-rating {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .comments-heading {
+    font-size: 1.5rem;
+  }
+
+  .comment-item {
+    padding: 1rem;
+  }
+
+  .comment-author {
+    font-size: 1rem;
+  }
+
+  .comment-rating {
+    font-size: 0.9rem;
+  }
+
+  .pagination-button {
+    padding: 0.25rem 0.5rem;
+  }
+}
