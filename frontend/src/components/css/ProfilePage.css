@@ -108,6 +108,29 @@ body {
   border-color: #6c98c6;
 }
 
+
+.upload-avatar-label {
+  display: inline-block;
+  background-color: #008CBA;
+  color: #ffffff;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition-duration: 0.4s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.upload-avatar-label:hover {
+  background-color: #006994;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
 @media only screen and (max-width: 1400px) {
   .profile_left {
     margin-right: 20px;
