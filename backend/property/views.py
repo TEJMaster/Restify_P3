@@ -20,7 +20,8 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.core import serializers
 from rest_framework import generics
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class PropertyCreateAPIView(CreateAPIView):
@@ -58,6 +59,7 @@ class PropertyUpdateAPIView(UpdateAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertyUpdateSerializer
     parser_classes = (MultiPartParser, FormParser)
+    lookup_field = 'name'
     
     def get(self, request, *args, **kwargs):
         property_instance = self.get_object()
@@ -86,6 +88,7 @@ class PropertyListAPIView(ListAPIView):
 class PropertyDeleteAPIView(DestroyAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
+    lookup_field = 'name'
 
     def perform_destroy(self, instance):
         if self.request.user != instance.owner:
@@ -135,3 +138,15 @@ class PropertyDetail(generics.RetrieveAPIView):
         name = self.kwargs['name']
         property_instance = get_object_or_404(Property, name=name)
         return Property.objects.filter(pk=property_instance.pk)
+    
+
+
+class UserPropertiesView(generics.ListAPIView):
+    serializer_class = PropertySerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        print("UserPropertiesView is being executed")
+        print(user)
+        return Property.objects.filter(owner_id=user.id)

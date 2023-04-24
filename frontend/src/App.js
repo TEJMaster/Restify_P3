@@ -12,7 +12,7 @@ import CreateProperty from './components/createpropertypage';
 import Comment_property_Page from './components/propertycomment';
 import HostComment_Page from './components/hostcomment';
 import PropertyDetail from './components/propertydetailpage';
-
+import UpdateProperty from './components/updatepropertypage';
 
 function App() {
   
@@ -31,6 +31,7 @@ function App() {
           <Route path="/comment_property" element={<Comment_property_Page />} />
           <Route path="/comment_user" element={<HostComment_Page />} />
           <Route path="/property/:name" element={<PropertyDetail />} />
+          <Route path="/update_property/:name" element={<UpdateProperty />} />
         </Routes>
       </div>
     </Router>
