@@ -51,8 +51,8 @@ const DisplayCommentsPage = () => {
   return (
     <>
       <NavBar />
-      <div className="display-comments-page">
-        <h2>Comments for {target_username}:</h2>
+      <div className="display-comments-page container">
+        <h2 className="comments-heading">Comments for {target_username}:</h2>
         {comments.length > 0 ? (
           <ul className="comments-list">
             {comments.map((comment) => (
@@ -75,13 +75,13 @@ const DisplayCommentsPage = () => {
             ))}
           </ul>
         ) : (
-          <p>No comments found.</p>
+          <p className="no-comments-message">No comments found.</p>
         )}
         <div className="pagination">
-          <button onClick={handlePrevPage} disabled={!prevPage}>
+          <button className="pagination-button" onClick={handlePrevPage} disabled={!prevPage}>
             Previous
           </button>
-          <button onClick={handleNextPage} disabled={!nextPage}>
+          <button className="pagination-button" onClick={handleNextPage} disabled={!nextPage}>
             Next
           </button>
         </div>
