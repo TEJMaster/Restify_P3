@@ -125,6 +125,11 @@ const ReservationPage = () => {
     }
     
 
+    function confirmcancelmsg() {
+      setShowCancellationSubmitted(false);
+      refreshPage();
+    }
+
     async function handleCancelConfirmation(reservationId) {
       try {
         const token = localStorage.getItem('access_token');
@@ -189,6 +194,10 @@ const ReservationPage = () => {
       );
     }
     
+    function refreshPage() {
+      window.location.reload(false);
+    }
+
     async function handleHostAction(reservationId, action) {
       try {
         const token = localStorage.getItem("access_token");
@@ -200,13 +209,7 @@ const ReservationPage = () => {
         );
     
         // Refresh reservations to show the updated state
-        const newHostReservations = hostReservations.map((reservation) => {
-          if (reservation.id === reservationId) {
-            return reservation;
-          }
-          return reservation;
-        });
-        setHostReservations(newHostReservations);
+        refreshPage();
       } catch (error) {
         console.error("Error updating reservation state:", error.response.data);
       }
@@ -236,7 +239,7 @@ const ReservationPage = () => {
         
         {reservations.map((reservation) => (
       <div key={reservation.id} className="stay">
-        <img src={reservation.property.image} alt={reservation.property.name} className="stay-image" />
+        <img src={reservation.property.images[0].image} alt={reservation.property.name} className="stay-image" />
 
 
         <div className="stay-details">
@@ -273,7 +276,7 @@ const ReservationPage = () => {
         {showCancellationSubmitted && (
           <FinishPopup
           message="Your cancellation request has been submitted, please wait for the property owner to confirm."
-          onClose={() => setShowCancellationSubmitted(false)}
+          onClose={confirmcancelmsg}
           />
         )}
       </div>
@@ -287,7 +290,7 @@ const ReservationPage = () => {
   {hostReservations.map((reservation) => (
     <div key={reservation.id} className="stay">
       <img
-        src={reservation.property.image}
+        src={reservation.property.images[0].image}
         alt={reservation.property.name}
         className="stay-image"
       />
