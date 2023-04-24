@@ -38,14 +38,20 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex: 1;
   max-width: 450px;
-  min-height: 500px; /* Add this line */
+  min-height: 500px;
 }
+
+.upload-avatar-label {
+  margin-top: 20px;
+  margin-left: 170px;
+}
+
 
 .profile_pic {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 5px solid #6c98c6; /* Change border color */
+  border: 5px solid #6c98c6;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -108,7 +114,6 @@ body {
   border-color: #6c98c6;
 }
 
-
 .upload-avatar-label {
   display: inline-block;
   background-color: #008CBA;
@@ -135,27 +140,29 @@ body {
   .profile_left {
     margin-right: 20px;
   }
+}
 
-  @media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
   .profile_left,
   .profile_right {
-  width: calc(50% - 15px);
+    width: calc(50% - 15px);
   }
   .profile_left {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
   }
-  }
-  
-  @media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 768px) {
   .profile {
-  flex-direction: column;
+    flex-direction: column;
+    height: auto; 
+    padding: 50px 0;
   }
   .profile_left,
   .profile_right {
-  width: 100%;
-  margin: 0 0 30px 0;
+    width: 100%;
+    margin: 30px 0;
   }
-  }
-  }
-  
-  
+}
+
+

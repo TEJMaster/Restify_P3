@@ -5,6 +5,7 @@
   background-color: #f7f7f7;
 }
 
+
 .comments-heading {
   font-size: 2.5rem;
   font-weight: 900;
@@ -44,12 +45,20 @@
 .comment-author {
   font-size: 1.2rem;
   font-weight: 700;
+  text-align: left;
+  color: lightcoral;
 }
 
 .comment-rating {
   font-size: 1.1rem;
   font-weight: 600;
+  font-size: 17px;
+  text-align: left;
   color: #008489;
+}
+
+.comment-date {
+  text-align: right;
 }
 
 .no-comments-message {

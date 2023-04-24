@@ -60,17 +60,19 @@ const DisplayCommentsPage = () => {
                 <div className="comment-author">
                   <span> User: {comment.author.username}</span>
                 </div>
-                <div className="comment-content">
-                  <p>Comment: {comment.content}</p>
-                </div>
+                
                 <div className="comment-rating">
                   <span>Rating: {comment.rate} stars</span>
+                </div>
+                <div className="comment-content">
+                  <p>Comment: {comment.content}</p>
                 </div>
                 <div className="comment-date">
                   <span>
                     Posted on: {new Date(comment.created_at).toLocaleDateString()}
                   </span>
                 </div>
+                
               </li>
             ))}
           </ul>
