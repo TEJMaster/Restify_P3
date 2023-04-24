@@ -119,10 +119,40 @@ const PropertyDetail = (props) => {
 
   return (
     <>
-      <NavBar />
-      <div className="container">
-        {/* ... property details and reservation form ... */}
-        <div className="comment">
+    <NavBar />
+    <div className="container">
+      <h2 className="prop-title">{property.name}</h2>
+      <p>{property.location}</p>
+      <p>Price: {property.price}</p>
+      <p>Guests: {property.guests}</p>
+      <p>Amenities: {property.amenities}</p>
+      <p>Avaliable dates: 
+        {property.from_date} - {property.to_date}
+      </p>
+      <div className="picture">
+        {property.images.map((image) => (
+          <img
+            key={image.image}
+            src={image.image}
+            alt={`${property.name} property`}
+            className="property-image"
+          />
+        ))}
+      </div>
+      <div className="reservation">
+        <h3>Make a Reservation</h3>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <form className="reservation-form" onSubmit={handleReservationSubmit}>
+          <label htmlFor="checkIn">Check-in:</label>
+          <input type="date" id="checkIn" name="checkIn" onChange={handleCheckInChange} />
+          <label htmlFor="checkOut">Check-out:</label>
+          <input type="date" id="checkOut" name="checkOut" onChange={handleCheckOutChange} />
+          
+          <button type="submit">Book Now</button>
+        </form>
+      </div>
+
+      <div className="comment">
           <h3>Comments:</h3>
           {comments.map((comment) => (
             <div key={comment.id} className="comment-item">
@@ -142,7 +172,7 @@ const PropertyDetail = (props) => {
             Next
           </button>
         </div>
-      </div>
+    </div>
     </>
   );
 };
