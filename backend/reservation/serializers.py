@@ -69,3 +69,10 @@ class ReservationApproveDenyCancelSerializer(serializers.ModelSerializer):
     #                 ('approve', 'Approve'),
     #                 ('deny', 'Deny'),
     #             ]
+    
+class ReservationListSerializer(serializers.ModelSerializer):
+    property = PropertySerializer(read_only = True)
+
+    class Meta:
+        model = Reservation
+        fields = ['id', 'user', 'property', 'from_date', 'to_date', 'state']

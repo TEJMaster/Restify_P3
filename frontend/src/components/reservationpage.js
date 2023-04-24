@@ -253,7 +253,7 @@ const ReservationPage = () => {
 
           {reservation.state === "Pending" && (
           <>
-            <button className="cancel-button" onClick={() => handleCancelClick(reservation.id, reservation.property.id)}>Cancel</button>
+            <button className="guest-cancel-button" onClick={() => handleCancelClick(reservation.id, reservation.property.id)}>Cancel</button>
           </>
         )}
             <p className="reservation-state">{reservation.state}</p>
