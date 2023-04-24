@@ -134,12 +134,9 @@ const LoggedMainPage = () => {
       </div>
       <div className="container">
       {searchResults.map((result) => (
+        
+        
         <div key={result.id} className="search-result">
-          <div className="result-content"> {/* Add this div */}
-            <h3>{result.name}</h3>
-            <p>{result.location}</p>
-          </div>
-          {/* Display the first image of the property */}
           {result.images.length > 0 && (
             <img
                 key={result.images[0].image} 
@@ -149,8 +146,12 @@ const LoggedMainPage = () => {
             />
           )}
 
-          {/* View button */}
-          <button
+          <div className="result-content"> {/* Add this div */}
+            <h3>{result.name}</h3>
+            <h2>{result.location}</h2>
+            <p>$ {result.price} / day</p>
+            <p>{result.guests} Guest</p>
+            <button
             className="view-button"
             onClick={() => {
               navigate(`/property/${result.name}`);
@@ -158,6 +159,8 @@ const LoggedMainPage = () => {
           >
             View
           </button>
+          </div>
+          
 
         </div>
       ))}

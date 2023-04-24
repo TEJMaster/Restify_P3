@@ -110,7 +110,7 @@ const NavBar = () => {
                   <img src={profileIcon} alt="edit-profile" />
                   <p>Edit Profile</p>
                 </Link>
-                <Link to="/comments" className="sub-menu-link">
+                <Link to={`/displaycommentpage/${userName}`} className="sub-menu-link">
                   <img src={messageIcon} alt="comments" />
                   <p>Comments</p>
                 </Link>

@@ -1,10 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './css/PropertyDetail.css'
+import './css/PropertyDetail.css';
 import axios from 'axios';
 import NavBar from './navbar';
-
 
 const PropertyDetail = (props) => {
   const [property, setProperty] = useState(null);
@@ -12,38 +10,58 @@ const PropertyDetail = (props) => {
   const { name } = useParams();
   const [errorMessage, setErrorMessage] = useState('');
 
-
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const navigate = useNavigate();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [nextPage, setNextPage] = useState(null);
+  const [prevPage, setPrevPage] = useState(null);
 
   useEffect(() => {
     fetchProperty(name);
   }, [name]);
 
+  useEffect(() => {
+    if (property) {
+      fetchComments(property.id, currentPage);
+    }
+  }, [property, currentPage]);
+
   const fetchProperty = async (name) => {
     const response = await fetch(`http://localhost:8000/property/${name}/`);
     if (response.ok) {
       const data = await response.json();
-      console.log('Property data:', data); // Add this line
+      console.log('Property data:', data);
       setProperty(data);
-      fetchComments(data.id); // Check if the property name is correct
     } else {
       console.error('Error fetching property details:', response.statusText);
     }
   };
-  
 
-  const fetchComments = async (propertyId) => {
+  const fetchComments = async (propertyId, page) => {
     try {
-      const response = await axios.get(`http://localhost:8000/comments/view/property/${propertyId}`);
+      const response = await axios.get(`http://localhost:8000/comments/view/property/${propertyId}?page=${page}`);
       if (response.status === 200) {
         console.log('Response data:', response.data);
         setComments(response.data.results);
+        setNextPage(response.data.next);
+        setPrevPage(response.data.previous);
       }
     } catch (error) {
       console.error('Error fetching comments:', error);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (nextPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (prevPage) {
+      setCurrentPage(currentPage - 1);
     }
   };
   
