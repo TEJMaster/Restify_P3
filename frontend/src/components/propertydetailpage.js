@@ -1,16 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './css/PropertyDetail.css'
 import axios from 'axios';
+import NavBar from './navbar';
+
 
 const PropertyDetail = (props) => {
   const [property, setProperty] = useState(null);
   const [comments, setComments] = useState([]);
   const { name } = useParams();
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetchProperty(name);
@@ -58,41 +64,43 @@ const PropertyDetail = (props) => {
     e.preventDefault();
     const accessToken = localStorage.getItem('access_token');
     const reservationData = {
-      
-      property: property.id, 
-      from_date: checkIn, 
-      to_date: checkOut, 
+      property: property.id,
+      from_date: checkIn,
+      to_date: checkOut,
     };
     console.log('Sending reservationData:', reservationData);
     try {
       const response = await fetch('http://localhost:8000/reservation/reserve/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(reservationData),
-    });
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(reservationData),
+      });
   
       if (response.ok) {
         const data = await response.json();
         console.log('Reservation created successfully:', data);
-        // Show a success message or redirect the user to another page
+        navigate('/reservation');
       } else {
         console.error('Error creating reservation:', response.statusText);
-        // Show an error message or handle the error
+        setErrorMessage('Reservation failed');
       }
     } catch (error) {
       console.error('Error:', error);
-      // Handle the error
+      setErrorMessage('Reservation failed');
     }
   };
+  
   
 
 
   if (!property) return <div>Loading...</div>;
 
   return (
+    <>
+    <NavBar />
     <div className="container">
       <h2 className="prop-title">{property.name}</h2>
       <p>{property.location}</p>
@@ -114,6 +122,7 @@ const PropertyDetail = (props) => {
       </div>
       <div className="reservation">
         <h3>Make a Reservation</h3>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form className="reservation-form" onSubmit={handleReservationSubmit}>
           <label htmlFor="checkIn">Check-in:</label>
           <input type="date" id="checkIn" name="checkIn" onChange={handleCheckInChange} />
@@ -133,10 +142,12 @@ const PropertyDetail = (props) => {
 
           </p>
           <p>Rating: {comment.rate} stars</p>
+          <p>Created at: {comment.created_at}</p>
         </div>
       ))}
     </div>
     </div>
+    </>
   );
 };
 
