@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './css/PropertyComment.css';
+import NavBar from './navbar';
 
 const PropertyCommentPage = () => {
   const [rating, setRating] = useState('');
@@ -47,6 +48,8 @@ const PropertyCommentPage = () => {
   };
 
   return (
+    <>
+    <NavBar />
     <div className="write-review">
       <h3>How was your experience? You can comment here:</h3>
       <form onSubmit={handleSubmit}>
@@ -81,6 +84,7 @@ const PropertyCommentPage = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './css/PropertyDetail.css'
 import axios from 'axios';
+import NavBar from './navbar';
 
 const PropertyDetail = (props) => {
   const [property, setProperty] = useState(null);
@@ -93,6 +94,8 @@ const PropertyDetail = (props) => {
   if (!property) return <div>Loading...</div>;
 
   return (
+    <>
+    <NavBar />
     <div className="container">
       <h2 className="prop-title">{property.name}</h2>
       <p>{property.location}</p>
@@ -133,10 +136,12 @@ const PropertyDetail = (props) => {
 
           </p>
           <p>Rating: {comment.rate} stars</p>
+          <p>Created at: {comment.created_at}</p>
         </div>
       ))}
     </div>
     </div>
+    </>
   );
 };
 
