@@ -28,30 +28,6 @@ const ReservationPage = () => {
     }
     
 
-    // const fetchReservations = async (page = 1) => {
-    //   try {
-    //     const response = await axios.get(`http://localhost:8000/reservation/?amenities=${selectedAmenities.join(',')}&page=${page}`);
-  
-    //     // Handle successful fetch
-    //     if (response.status === 200) {
-
-    //       // const userReservations = response.data.results.filter(
-    //       //   (reservation) => reservation.user === userId
-    //       // );
-
-    //       const userReservations = response.data.results;
-    //       setReservations(userReservations);
-    //       setTotalPages(Math.ceil(response.data.count / response.data.page_size));
-    //     }
-    //   } catch (error) {
-    //     setError('Error fetching reservations');
-    //   }
-    // };
-  
-    // useEffect(() => {
-    //   fetchReservations();
-    // }, [selectedAmenities]);
-
     useEffect(() => {
       const fetchReservations = async (page = 1) => {
         try {
@@ -189,10 +165,6 @@ const ReservationPage = () => {
       );
     }
 
-    // function handlePaginationClick(newPage) {
-    //   setCurrentPage(newPage);
-    //   fetchReservations(newPage);
-    // }
   
     function ReservationFilter({ selectedState, handleStateFilterChange }) {
       return (
