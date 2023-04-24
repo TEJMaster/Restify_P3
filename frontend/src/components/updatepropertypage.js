@@ -189,7 +189,7 @@ const handleImageDelete = async (imageId) => {
               {propertyImages.map((image) => (
                 <div key={image.id} className="property-image">
                   <img src={image.image} alt="property" />
-                  <button onClick={() => handleImageDelete(image.id)}>Delete</button>
+                  <button type="button" onClick={() => handleImageDelete(image.id)}>Delete</button>
                 </div>
               ))}
             </div>
