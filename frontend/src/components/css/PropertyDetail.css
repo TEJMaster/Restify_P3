@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+  }
+  
+  .property-detail-container {
+    padding: 0 95px;
+  }
+  
+  .property-detail {
+    margin-top: 30px;
+  }
+  
+  .property-detail h2 {
+    font-weight: 550;
+    color: #333333;
+    font-size: 24px;
+    margin: 1px 0;
+  }
+  
+  .property-detail p {
+    font-size: 21px;
+    font-weight: 400;
+    color: #333333;
+    margin-bottom: 15px;
+  }
+  
+  .property-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .reservation {
+    background-color: lightgray;
+    padding: 1em;
+    margin-bottom: 2em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .write-review {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+  }
+  
+  .write-review h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .write-review form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .write-review input,
+  .write-review textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .write-review label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .write-review .submit-button {
+    background-color: #ff5351;
+    color: white;
+    border: 2px;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 10px;
+  }
+  
+  .write-review .submit-button:hover {
+    background-color: #005588;
+  }
+  

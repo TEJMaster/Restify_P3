@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Reservation, Property
+from pprint import pprint
 
 class PropertySerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,7 +8,7 @@ class PropertySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'owner', 'price', 'image']
 
 class ReservationSerializer(serializers.ModelSerializer):
-    property = PropertySerializer(read_only=True)
+    property = serializers.PrimaryKeyRelatedField(queryset=Property.objects.all())
 
     class Meta:
         model = Reservation
@@ -16,8 +17,8 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if data['to_date'] <= data['from_date']:
-            raise serializers.ValidationError("The 'to_date' must be later than the 'from_date'")
-        
+            raise serializers.ValidationError("The 'to_date' must be later than the 'from_date'")  
+        pprint(data['property'])
         property = data['property']
         
         if data['from_date'] < property.from_date or data['to_date'] > property.to_date:
