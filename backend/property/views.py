@@ -141,6 +141,19 @@ class PropertyDetail(generics.RetrieveAPIView):
     
 
 
+
+class PropertyDetailByID(generics.RetrieveAPIView):
+    serializer_class = PropertySerializer
+    lookup_field = 'id'
+    queryset = Property.objects.all()
+
+    def get_queryset(self):
+        id = self.kwargs['id']
+        property_instance = get_object_or_404(Property, id=id)
+        return Property.objects.filter(pk=property_instance.pk)
+
+
+
 class UserPropertiesView(generics.ListAPIView):
     serializer_class = PropertySerializer
     permission_classes = [IsAuthenticated]
