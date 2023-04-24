@@ -33,7 +33,7 @@ from datetime import date
 #         return JsonResponse({"error": "Property not found"}, status=404)
 
 class ReservationPagination(PageNumberPagination):
-    page_size = 3
+    page_size = 4
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
@@ -42,7 +42,8 @@ class ReservationViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = ReservationPagination
     filter_backends = [DjangoFilterBackend]
     filterset_class = ReservationFilter
-
+    queryset = Property.objects.all().prefetch_related('images')
+    
     def get_queryset(self):
         user = self.request.user
         return Reservation.objects.filter(Q(user=user) | Q(property__owner=user))

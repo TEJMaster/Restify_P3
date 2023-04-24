@@ -1,11 +1,19 @@
 from rest_framework import serializers
 from .models import Reservation, Property
 from pprint import pprint
+from property.models import PropertyImage
 
+
+class PropertyImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PropertyImage
+        fields = ['image']
+        
 class PropertySerializer(serializers.ModelSerializer):
+    images = PropertyImageSerializer(many=True, read_only=True)
     class Meta:
         model = Property
-        fields = ['id', 'name', 'owner', 'price', 'image']
+        fields = ['id', 'name', 'owner', 'price', 'images']
 
 class ReservationSerializer(serializers.ModelSerializer):
     property = serializers.PrimaryKeyRelatedField(queryset=Property.objects.all())
