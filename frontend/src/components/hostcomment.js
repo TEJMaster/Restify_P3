@@ -7,8 +7,9 @@ import NavBar from './navbar';
 const HostCommentPage = () => {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const { targetuserid } = useParams(); // Extract the user ID from the URL
+  const { targetuserid } = useParams();
   const navigate = useNavigate();
 
   const handleRatingChange = (e) => {
@@ -27,7 +28,7 @@ const HostCommentPage = () => {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        `http://localhost:8000/comments/comment/user/${targetuserid}`, // Use the user ID in the API endpoint URL
+        `http://localhost:8000/comments/comment/user/${targetuserid}`,
         {
           rate: rating,
           content: review,
@@ -36,20 +37,26 @@ const HostCommentPage = () => {
       );
 
       if (response.status === 201) {
-        // Navigate the user to the desired page after successful submission
         navigate('/reservation');
       }
     } catch (error) {
       console.error('Error submitting the host comment:', error);
+      if (error.response) {
+        console.error('Error response data:', error.response.data);
+        if (error.response.status === 400) {
+          setErrorMessage('You can only comment the user once.');
+        }
+      }
     }
   };
 
   return (
     <>
-    <NavBar />
-    <div className="write-host-review">
-      <h3>How was your experience with the user? You can comment here:</h3>
-      <form onSubmit={handleSubmit}>
+      <NavBar />
+      <div className="write-host-review">
+        <h3>How was your experience with the user? You can comment here:</h3>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <form onSubmit={handleSubmit}>
         <label htmlFor="rating">Rating</label>
         <select
           id="rating"
@@ -80,7 +87,7 @@ const HostCommentPage = () => {
           Submit Review
         </button>
       </form>
-    </div>
+      </div>
     </>
   );
 };

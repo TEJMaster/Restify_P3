@@ -162,20 +162,24 @@ const PropertyDetail = (props) => {
       </div>
 
       <div className="comment">
-          <h3>Comments:</h3>
-          <div class="review-details">
-          {comments.map((comment) => (
-            <div key={comment.id} className="comment-item">
-              <p className='comment-user'>
-                <strong>
-                  {comment.user}:</strong> 
-              </p>
-              <h2>Reviewed on {comment.created_at}</h2>
-              <p className='ratings'>Rating: {comment.rate} stars</p>
-              <h4>{comment.content}</h4>
-            </div>
-          ))}
-          </div>
+        <h3>Comments:</h3>
+        <div class="review-details">
+          {comments.length > 0 ? (
+            comments.map((comment) => (
+              <div key={comment.id} className="comment-item">
+                <p className='comment-user'>
+                  <strong>
+                    {comment.user}:</strong> 
+                </p>
+                <h2>Reviewed on {comment.created_at}</h2>
+                <p className='ratings'>Rating: {comment.rate} stars</p>
+                <h4>{comment.content}</h4>
+              </div>
+            ))
+          ) : (
+            <p>No comments.</p>
+          )}
+        </div>
       </div>
         <div className="pagination">
           <button onClick={handlePrevPage} disabled={!prevPage}>
