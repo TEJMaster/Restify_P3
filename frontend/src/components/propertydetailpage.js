@@ -46,21 +46,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './css/PropertyDetail.css'
+import axios from 'axios';
 
 const PropertyDetail = (props) => {
   const [property, setProperty] = useState(null);
-  const { id } = useParams();
+  const { name } = useParams();
 
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [comment, setComment] = useState('');
+  const [propertyId, setPropertyId] = useState('');
 
   useEffect(() => {
-    fetchProperty(id);
-  }, [id]);
+    fetchProperty(name);
+  }, [name]);
 
-  const fetchProperty = async (id) => { 
-    const response = await fetch(`http://localhost:8000/id/${id}/`); 
+  const fetchProperty = async (name) => {
+    const response = await fetch(`http://localhost:8000/property/${name}/`);
     if (response.ok) {
       const data = await response.json();
       setProperty(data);
@@ -68,6 +70,7 @@ const PropertyDetail = (props) => {
       console.error('Error fetching property details:', response.statusText);
     }
   };
+  
 
 
   const handleCheckInChange = (e) => {

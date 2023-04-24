@@ -139,18 +139,17 @@ class PropertyDetail(generics.RetrieveAPIView):
         property_instance = get_object_or_404(Property, name=name)
         return Property.objects.filter(pk=property_instance.pk)
     
+    
 
+# class PropertyDetailByID(generics.RetrieveAPIView):
+#     serializer_class = PropertySerializer
+#     lookup_field = 'id'
+#     queryset = Property.objects.all()
 
-
-class PropertyDetailByID(generics.RetrieveAPIView):
-    serializer_class = PropertySerializer
-    lookup_field = 'id'
-    queryset = Property.objects.all()
-
-    def get_queryset(self):
-        id = self.kwargs['id']
-        property_instance = get_object_or_404(Property, id=id)
-        return Property.objects.filter(pk=property_instance.pk)
+#     def get_queryset(self):
+#         id = self.kwargs['id']
+#         property_instance = get_object_or_404(Property, id=id)
+#         return Property.objects.filter(pk=property_instance.pk)
 
 
 
@@ -163,3 +162,5 @@ class UserPropertiesView(generics.ListAPIView):
         print("UserPropertiesView is being executed")
         print(user)
         return Property.objects.filter(owner_id=user.id)
+
+
