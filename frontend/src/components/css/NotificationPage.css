@@ -82,3 +82,42 @@
     background-color: #d93940;
   }
   
+  @media only screen and (max-width: 768px) {
+    .notification-page h1 {
+      font-size: 1.5em;
+    }
+  
+    .notification-item {
+      padding: 12px;
+    }
+  
+    .notification-time {
+      font-size: 0.7em;
+    }
+  }
+  
+  @media only screen and (max-width: 576px) {
+    .notification-page {
+      padding: 1rem;
+    }
+  
+    .notification-page h1 {
+      font-size: 1.3em;
+    }
+  
+    .notification-item {
+      padding: 10px;
+    }
+  
+    .notification-time {
+      font-size: 0.6em;
+    }
+  
+    .pagination-buttons button {
+      padding: 8px 10px;
+    }
+  
+    .clear-notifications {
+      padding: 10px 16px;
+    }
+  }
