@@ -273,12 +273,24 @@ const ReservationPage = () => {
         <button
           className="guest-comment-button"
           onClick={() =>
-            navigate(`/comment_property/${reservation.id}`)
+            navigate(`/comment_property/${reservation.property.id}`)
           }
         >
           Comment
         </button>
       )}
+
+      {reservation.state === "Completed" && (
+        <button
+          className="guest-comment-button"
+          onClick={() =>
+            navigate(`/comment_property/${reservation.property.id}`)
+          }
+        >
+          Comment
+        </button>
+      )}
+      
       <p className="reservation-state">{reservation.state}</p>
     </div>
 
