@@ -63,35 +63,41 @@ const MyPropertyPage = () => {
       <NavBar />
       <div className="container">
         <div className="list-container">
-          <Link to="/create_property">
-            <button className="add-button">Add New Property</button>
-          </Link>
           <div className="prop-lists">
             <h1>Your Properties</h1>
+            <Link to="/create_property">
+                  <button className="add-button">Add New Property</button>
+            </Link>
             {Array.isArray(properties.results) &&
               properties.results.map((property) => (
                 <div key={property.name} className="property">
                   <h3>{property.name}</h3>
                   <p>{property.location}</p>
-                  <img
-                    src={property.images.length > 0 ? property.images[0].image : ''}
-                    alt={`${property.name} property`}
-                    className="property-image"
-                  />
-                  <button
-                    className="update-button"
-                    onClick={() => updateProperty(property.name)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="delete-button"
-                    onClick={() => deleteProperty(property.name)}
-                  >
-                    Delete
-                  </button>
+                  <div className="property-controls">
+                    <img
+                      src={property.images.length > 0 ? property.images[0].image : ''}
+                      alt={`${property.name} property`}
+                      className="property-image"
+                    />
+                    <div className="buttons">
+                      <button
+                        className="update-button"
+                        onClick={() => updateProperty(property.name)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="delete-button"
+                        onClick={() => deleteProperty(property.name)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+
                 </div>
               ))}
+              
           </div>
         </div>
       </div>
