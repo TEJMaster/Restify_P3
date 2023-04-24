@@ -86,16 +86,9 @@ const NavBar = () => {
               <Link to="/my_property">My property</Link>
             </li>
             <li>
-              <img
-                src={bellIcon}
-                className="bell"
-                alt="bell"
-                onClick={toggleNotification} />
-              {isNotificationOpen && (
-                <div className={`notification-menu-wrap${isNotificationOpen ? " open" : ""}`}>
-                  <NotificationList />
-                </div>
-              )}
+            <Link to="/notificationpage">
+                <img src={bellIcon} className="bell" alt="bell" />
+              </Link>
             </li>
           </ul>
           <img

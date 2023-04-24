@@ -80,12 +80,13 @@ const PropertyDetail = (props) => {
       });
   
       if (response.ok) {
-        const data = await response.json();
-        console.log('Reservation created successfully:', data);
+        // const data = await response.json();
+        // console.log('Reservation created successfully:', data);
         navigate('/reservation');
       } else {
-        console.error('Error creating reservation:', response.statusText);
-        setErrorMessage('Reservation failed');
+        const errorData = await response.json();
+        console.error('Error creating reservation:', response.statusText, errorData);
+        setErrorMessage('Reservation failed, please check your dates and Logged in status');
       }
     } catch (error) {
       console.error('Error:', error);

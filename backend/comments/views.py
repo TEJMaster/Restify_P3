@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from .pagination import CommentPagination
 from django.core.exceptions import ObjectDoesNotExist
+from notification.models import Notification
 
 from django.core.exceptions import PermissionDenied
 
@@ -29,6 +30,12 @@ class CommentOnPropertyView(generics.CreateAPIView):
                 raise PermissionDenied("Property owners cannot comment on their own property.")
 
             serializer.save(user=user, property=property_instance)
+            property_owner = property_instance.owner
+            Notification.objects.create(
+                recipient=property_owner,
+                content=f"{user.username} has commented on your property {property_instance.name}."
+            )
+            
         except Property.DoesNotExist:
             raise serializers.ValidationError({"property_id": "Property with id " + str(property_id) + " does not exist."})
 
