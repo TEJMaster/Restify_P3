@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import NavBar from './navbar';
 import './css/LoggedMainPage.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const LoggedMainPage = () => {
+
+  const navigate = useNavigate();
+
   const [searchParams, setSearchParams] = useState({
     location: '',
     from_date: '',
@@ -26,6 +31,7 @@ const LoggedMainPage = () => {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     await fetchSearchResults(`http://localhost:8000/property/search/?${new URLSearchParams(searchParams).toString()}`);
+    console.log(searchResults);
   };
 
   const fetchSearchResults = async (url) => {
@@ -96,7 +102,6 @@ const LoggedMainPage = () => {
                 value={searchParams.num_guests}
                 onChange={handleChange}
                 className="guest"
-                required
               >
                 <option value="">Select guests number</option>
                 <option value="1">1 guest</option>
@@ -137,6 +142,7 @@ const LoggedMainPage = () => {
           {/* Display the first image of the property */}
           {result.images.length > 0 && (
             <img
+                key={result.images[0].image} 
               src={result.images[0].image}
               alt={`${result.name} property`}
               className="property-image"
@@ -147,13 +153,16 @@ const LoggedMainPage = () => {
           <button
             className="view-button"
             onClick={() => {
-              /* Implement view property functionality here */
+              navigate(`/property/${result.name}`);
             }}
           >
             View
           </button>
-          </div>
-        ))}
+
+        </div>
+      ))}
+
+        </div>
         <div>
           <button onClick={handlePreviousPage} disabled={!previousPage}>
             Previous
@@ -163,7 +172,7 @@ const LoggedMainPage = () => {
           </button>
         </div>
       </div>
-    </div>
+
   );
 };
 
