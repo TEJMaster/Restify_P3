@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/NotificationPage.css';
+import NavBar from './navbar';
+
 
 const NotificationPage = () => {
   const [notifications, setNotifications] = useState([]);
@@ -45,6 +47,7 @@ const NotificationPage = () => {
 
   return (
     <div className="notification-page">
+      <NavBar />
       <h1>Notifications</h1>
       <div className="notification-list">
         {notifications.map((notification) => (

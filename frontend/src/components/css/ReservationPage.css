@@ -335,3 +335,37 @@
 	background-color: #f3722c;
   }
   
+  .pagination-button {
+	background-color: #f1c40f;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	padding: 10px 24px;
+	border-radius: 4px;
+	transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .pagination-button:hover {
+	background-color: #e67e22;
+	color: white;
+  }
+  
+  .pagination-button:disabled {
+	background-color: #bdc3c7;
+	color: #7f8c8d;
+	cursor: not-allowed;
+  }
+  
+  .previous {
+	float: left;
+  }
+  
+  .next {
+	float: right;
+  }
+  

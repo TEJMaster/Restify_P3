@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import './css/ReservationPage.css';
 import './css/NavBar.css';
@@ -15,8 +15,6 @@ const ReservationPage = () => {
     const [showCancellationSubmitted, setShowCancellationSubmitted] = useState(false);
     const [reservationIdToCancel, setReservationIdToCancel] = useState(null);
     const [userId, setUserId] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
 
     const [propertyIdToCancel, setPropertyIdToCancel] = useState(null);
     const [selectedState, setSelectedState] = useState('');
@@ -24,7 +22,8 @@ const ReservationPage = () => {
 
     const [hostReservations, setHostReservations] = useState([]);
 
-    
+    const [nextPage, setNextPage] = useState(null);
+    const [previousPage, setPreviousPage] = useState(null);
 
 
     function handleStateFilterChange(e) {
@@ -34,12 +33,12 @@ const ReservationPage = () => {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-      const fetchReservations = async (page = 1) => {
+    
+    const fetchReservations = useCallback(async (url) => {
         try {
           const token = localStorage.getItem('access_token');
           const headers = { Authorization: `Bearer ${token}` };
-          const response = await axios.get('http://localhost:8000/reservation/', { headers });
+          const response = await axios.get(url, { headers });
     
           const tokenParts = token.split('.');
           const tokenPayload = tokenParts[1];
@@ -70,24 +69,20 @@ const ReservationPage = () => {
               (reservation) => reservation.state === selectedState
             );
           }
-    
+          setNextPage(response.data.next);
+          setPreviousPage(response.data.previous);
           setReservations(userReservations);
-          setTotalPages(Math.ceil(response.data.count / response.data.page_size));
-          setCurrentPage(response.data.page);
         } catch (error) {
           console.error('Error fetching reservations:', error);
         }
-      };
+      }, [selectedState]);
 
-      const fetchHostReservations = async (page = 1) => {
+      const fetchHostReservations = useCallback(async (url) => {
           try {
             const token = localStorage.getItem("access_token");
             const headers = { Authorization: `Bearer ${token}` };
 
-            const response = await axios.get(
-              "http://localhost:8000/reservation/",
-              { headers }
-            );
+            const response = await axios.get(url, { headers });
 
             const tokenParts = token.split('.');
             const tokenPayload = tokenParts[1];
@@ -106,24 +101,39 @@ const ReservationPage = () => {
                 (reservation) => reservation.state === selectedState
               );
             }
-
+            
+            setNextPage(response.data.next);
+            setPreviousPage(response.data.previous);
             setHostReservations(userHostReservations);
-            setTotalPages(Math.ceil(response.data.count / response.data.page_size));
-            setCurrentPage(response.data.page);
+
           } catch (error) {
             console.error("Error fetching host reservations:", error);
           }
-      };
+      }, [selectedState]);
 
-      fetchReservations(currentPage);
-      fetchHostReservations();
       
-    }, [selectedState, currentPage]);
-    
-    function handlePaginationClick(newPage) {
-      setCurrentPage(newPage);
+
+    useEffect(() => {
+        const initialUrl = "http://localhost:8000/reservation/";
+        fetchReservations(initialUrl);
+        fetchHostReservations(initialUrl);
+      }, [selectedState, fetchReservations, fetchHostReservations]);
+      
+    function loadNext() {
+        if (nextPage) {
+          fetchReservations(nextPage);
+          fetchHostReservations(nextPage);
+        }
+    }
+      
+    function loadPrevious() {
+        if (previousPage) {
+          fetchReservations(previousPage);
+          fetchHostReservations(previousPage);
+        }
     }
     
+
     function handleCancelClick(reservationId, propertyId) {
       setReservationIdToCancel(reservationId);
       setPropertyIdToCancel(propertyId);
@@ -203,6 +213,8 @@ const ReservationPage = () => {
     function refreshPage() {
       window.location.reload(false);
     }
+
+    
 
     async function handleHostAction(reservationId, action) {
       try {
@@ -395,34 +407,16 @@ const ReservationPage = () => {
     </div>
   ))}
 </section>
+    
+<button className="pagination-button previous" onClick={loadPrevious} disabled={!previousPage}>
+  Previous
+</button>
+<button className="pagination-button next" onClick={loadNext} disabled={!nextPage}>
+  Next
+</button>
 
-        <div className="pagination">
-      <button
-        className="prev"
-        onClick={() => handlePaginationClick(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        Prev
-      </button>
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-        <button
-          key={page}
-          className={page === currentPage ? 'active' : ''}
-          onClick={() => handlePaginationClick(page)}
-        >
-          {page}
-        </button>
-      ))}
-      <button
-        className="next"
-        onClick={() => handlePaginationClick(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        Next
-      </button>
+      
     </div>
-    </div>
-
     
   );
 };
