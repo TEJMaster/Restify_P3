@@ -128,28 +128,30 @@ const LoggedMainPage = () => {
         </div>
       </div>
       <div className="container">
-        {searchResults.map((result) => (
-          <div key={result.id} className="search-result">
+      {searchResults.map((result) => (
+        <div key={result.id} className="search-result">
+          <div className="result-content"> {/* Add this div */}
             <h3>{result.name}</h3>
             <p>{result.location}</p>
-            {/* Display the first image of the property */}
-            {result.images.length > 0 && (
-              <img
-                src={result.images[0].image}
-                alt={`${result.name} property`}
-                className="property-image"
-              />
-            )}
+          </div>
+          {/* Display the first image of the property */}
+          {result.images.length > 0 && (
+            <img
+              src={result.images[0].image}
+              alt={`${result.name} property`}
+              className="property-image"
+            />
+          )}
 
-            {/* View button */}
-            <button
-              className="view-button"
-              onClick={() => {
-                /* Implement view property functionality here */
-              }}
-            >
-              View
-            </button>
+          {/* View button */}
+          <button
+            className="view-button"
+            onClick={() => {
+              /* Implement view property functionality here */
+            }}
+          >
+            View
+          </button>
           </div>
         ))}
         <div>
