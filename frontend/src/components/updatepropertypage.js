@@ -92,82 +92,107 @@ const UpdateProperty = () => {
   }
   return (
     <>
-    <NavBar />
-    <div>
-      <h1>Update Property</h1>
-      <form onSubmit={handleSubmit}>
-        {/* Render your form fields using the property data */}
-        {/* Add other form fields as needed */}
-        <div className="input-group">
-        <label htmlFor="owner_first_name">Owner First Name:</label>
-        <input type="text" id="owner_first_name" name="owner_first_name" defaultValue={property.owner_first_name} required />
+      <NavBar />
+      <div className="UpdateProperty">
+        <h1>Update Property</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <div className="label-input">
+              <label htmlFor="owner_first_name">Owner First Name:</label>
+              <input type="text" id="owner_first_name" name="owner_first_name" defaultValue={property.owner_first_name} required />
+            </div>
 
-        <label htmlFor="owner_last_name">Owner Last Name:</label>
-        <input type="text" id="owner_last_name" name="owner_last_name" defaultValue={property.owner_last_name} required />
+            <div className="label-input">
+              <label htmlFor="owner_last_name">Owner Last Name:</label>
+              <input type="text" id="owner_last_name" name="owner_last_name" defaultValue={property.owner_last_name} required />
+            </div>
 
-        <label htmlFor="location">Property Address:</label>
-        <input type="text" id="location" name="location" defaultValue={property.location} required />
+            <div className="label-input">
+              <label htmlFor="location">Property Address:</label>
+              <input type="text" id="location" name="location" defaultValue={property.location} required />
+            </div>
 
-        <label htmlFor="guests">Number of Guests:</label>
-        <input type="number" id="guests" name="guests" defaultValue={property.guests} required />
+            <div className="label-input">
+              <label htmlFor="guests">Number of Guests:</label>
+              <input type="number" id="guests" name="guests" defaultValue={property.guests} required />
+            </div>
 
-        <label htmlFor="number_of_bedrooms">Number of Bedrooms:</label>
-        <input type="number" id="number_of_bedrooms" name="number_of_bedrooms" defaultValue={property.number_of_bedrooms} required />
+            <div className="label-input">
+              <label htmlFor="number_of_bedrooms">Number of Bedrooms:</label>
+              <input type="number" id="number_of_bedrooms" name="number_of_bedrooms" defaultValue={property.number_of_bedrooms} required />
+            </div>
 
-        <label htmlFor="number_of_washrooms">Number of Washrooms:</label>
-        <input type="number" id="number_of_washrooms" name="number_of_washrooms" defaultValue={property.number_of_washrooms} required />
+            <div className="label-input">
+              <label htmlFor="number_of_washrooms">Number of Washrooms:</label>
+              <input type="number" id="number_of_washrooms" name="number_of_washrooms" defaultValue={property.number_of_washrooms} required />
+            </div>
 
-        <label htmlFor="contact_number">Contact Number:</label>
-        <input type="tel" id="contact_number" name="contact_number" defaultValue={property.contact_number} required />
+            <div className="label-input">
+              <label htmlFor="contact_number">Contact Number:</label>
+              <input type="tel" id="contact_number" name="contact_number" defaultValue={property.contact_number} required />
+            </div>
 
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" defaultValue={property.email} required />
+            <div className="label-input">
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="email" defaultValue={property.email} required />
+            </div>
 
-        <label htmlFor="from_date">From Date:</label>
-        <input
-          type="date"
-          id="from_date"
-          name="from_date"
-          defaultValue={property.from_date}
-          ref={startDateRef}
-          onChange={validateDates}
-          required
-        />
+            <div className="label-input">
+              <label htmlFor="from_date">From Date:</label>
+              <input
+                type="date"
+                id="from_date"
+                name="from_date"
+                defaultValue={property.from_date}
+                ref={startDateRef}
+                onChange={validateDates}
+                required
+              />
+            </div>
 
-        <label htmlFor="to_date">To Date:</label>
-        <input
-          type="date"
-          id="to_date"
-          name="to_date"
-          defaultValue={property.to_date}
-          ref={endDateRef}
-          onChange={validateDates}
-          required
-        />
+            <div className="label-input">
+              <label htmlFor="to_date">To Date:</label>
+              <input
+                type="date"
+                id="to_date"
+                name="to_date"
+                defaultValue={property.to_date}
+                ref={endDateRef}
+                onChange={validateDates}
+                required
+              />
+            </div>
 
-        <label htmlFor="images">Upload Images:</label>
-        <input
-          type="file"
-          id="images"
-          accept="image/*"
-          name="images"
-          multiple
-          required
-          onChange={validateImages}
-        />
+            <div className="label-input">
+              <label htmlFor="images">Upload Images:</label>
+              <input
+                type="file"
+                id="images"
+                accept="image/*"
+                name="images"
+                multiple
+                required
+                onChange={validateImages}
+              />
+            </div>
 
-        <label htmlFor="amenities">Amenities:</label>
-        <input type="text" id="amenities" name="amenities" defaultValue={property.amenities} required />
+            <div className="label-input">
+              <label htmlFor="amenities">Amenities:</label>
+              <input type="text" id="amenities" name="amenities" defaultValue={property.amenities} required />
+            </div>
 
-        <label htmlFor="price">Price:</label>
-        <input type="number" id="price" name="price" defaultValue={property.price} required />
-        </div>
-        <button type="button" onClick={handleCancel}>
-          Cancel
-        </button>
-        <button type="submit">Update Property</button>
-      </form>
-    </div>
+            <div className="label-input">
+              <label htmlFor="price">Price:</label>
+              <input type="number" id="price" name="price" defaultValue={property.price} required />
+            </div>
+          </div>
+
+          <button type="button" onClick={handleCancel}>
+            Cancel
+          </button>
+          <button type="submit">Update Property</button>
+        </form>
+      </div>
     </>
   );
 };
