@@ -36,7 +36,7 @@ const HostCommentPage = ({ targetUsername }) => {
 
       if (response.status === 201) {
         // Navigate the user to the desired page after successful submission
-        navigate('/some-page');
+        navigate('/reservation');
       }
     } catch (error) {
       console.error('Error submitting the host comment:', error);

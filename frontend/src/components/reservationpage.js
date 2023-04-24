@@ -378,6 +378,18 @@ const ReservationPage = () => {
           </>
         )}
 
+        {reservation.state === "Terminated" && (
+          <>
+          <button
+          className="guest-comment-button"
+          onClick={() =>
+            navigate(`/comment_user/${reservation.user_id}`)
+          }
+        >
+          Comment the guest
+        </button>
+          </>
+        )}
         <p className="reservation-state">{reservation.state}</p>
       </div>
     </div>

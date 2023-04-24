@@ -28,18 +28,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class UserCommentSerializer(serializers.ModelSerializer):
     author = UserSerializer(default=CurrentUserDefault(), read_only=True)
-    target_username = serializers.CharField(write_only=True, required=True)
     content = serializers.CharField(required=True)
     rate = serializers.IntegerField(required=True, validators=[MinValueValidator(0), MaxValueValidator(10)])
 
     class Meta:
         model = UserComment
-        fields = ('id', 'author', 'target_username', 'content', 'rate' , 'created_at')
+        fields = ('id', 'author', 'content', 'rate', 'created_at')
 
     def create(self, validated_data):
-        target_username = validated_data.pop('target_username')
-        target_user = CustomUser.objects.get(username=target_username)
-        return UserComment.objects.create(target_user=target_user, **validated_data)
+        return UserComment.objects.create(**validated_data)
 
 
 

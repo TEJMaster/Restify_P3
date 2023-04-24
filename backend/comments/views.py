@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from .pagination import CommentPagination
+from django.core.exceptions import ObjectDoesNotExist
 
 from django.core.exceptions import PermissionDenied
 
@@ -123,20 +124,22 @@ class UserCommentCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         user = self.request.user
-        target_username = self.request.data.get('target_username')
-        
+        target_user_id = self.kwargs['target_user_id']
+
         try:
-            target_user = CustomUser.objects.get(username=target_username)
-        except CustomUser.DoesNotExist:
-            raise ValidationError({"detail": f"Target user '{target_username}' does not exist."})
-        
+            target_user = CustomUser.objects.get(id=target_user_id)
+        except ObjectDoesNotExist:
+            raise ValidationError({"detail": f"Target user with ID '{target_user_id}' does not exist."})
+
         if user == target_user:
             raise ValidationError({"detail": "You cannot comment on yourself."})
-        
+
         if UserComment.objects.filter(author=user, target_user=target_user).exists():
             raise ValidationError({"detail": "You have already commented on this user."})
-        
-        serializer.save(author=user)
+
+        serializer.save(author=user, target_user=target_user)
+
+
 
 
 class TargetUserCommentsView(generics.ListAPIView):
