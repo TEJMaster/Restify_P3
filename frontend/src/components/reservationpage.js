@@ -38,7 +38,9 @@ const ReservationPage = () => {
         try {
           const token = localStorage.getItem('access_token');
           const headers = { Authorization: `Bearer ${token}` };
-          const response = await axios.get(url, { headers });
+
+          const apiUrl = selectedState ? `${url}?state=${selectedState}` : url;
+          const response = await axios.get(apiUrl, { headers });
     
           const tokenParts = token.split('.');
           const tokenPayload = tokenParts[1];
@@ -47,22 +49,9 @@ const ReservationPage = () => {
     
           const UserId = tokenPayloadArray.user_id;
 
-          
-          
-
     
-          let userReservations = response.data.results
-            .filter((reservation) => reservation.user === UserId)
-            .map((reservation) => {
-          return {
-            ...reservation,
-            property: {
-            ...reservation.property,
-            image: `http://localhost:8000/property_images${response.data.image}`,
-            },
-          };
-          });
-
+        let userReservations = response.data.results.filter((reservation) => reservation.user === UserId);
+  
     
           if (selectedState) {
             userReservations = userReservations.filter(
@@ -82,7 +71,8 @@ const ReservationPage = () => {
             const token = localStorage.getItem("access_token");
             const headers = { Authorization: `Bearer ${token}` };
 
-            const response = await axios.get(url, { headers });
+            const apiUrl = selectedState ? `${url}?state=${selectedState}` : url;
+            const response = await axios.get(apiUrl, { headers });
 
             const tokenParts = token.split('.');
             const tokenPayload = tokenParts[1];
@@ -257,7 +247,9 @@ const ReservationPage = () => {
         
         {reservations.map((reservation) => (
   <div key={reservation.id} className="stay">
-    <img alt={reservation.property.name} className="stay-image" />
+    <img src={reservation.property.images.length > 0
+            ? reservation.property.images[0].image
+            : ''} alt={reservation.property.name} className="stay-image" />
 
     <div className="stay-details">
       <h3>{reservation.property.name}</h3>
@@ -332,6 +324,11 @@ const ReservationPage = () => {
   {hostReservations.map((reservation) => (
     <div key={reservation.id} className="stay">
       <img
+        src={
+          reservation.property.images.length > 0
+            ? reservation.property.images[0].image
+            : ''
+        }
         alt={reservation.property.name}
         className="stay-image"
       />
