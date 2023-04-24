@@ -133,16 +133,22 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	margin-top: 65px;	
   }
-  
-  .reservation-state {
+
+  .button-state-container .reservation-state {
 	margin-top: 5px;
-	margin-right: 20px;
+	margin-right: 7px;
 	color: #007bff;
   }
 
-  .cancel-button {
+  
+  .reservation-state {
+	margin-top: 5px;
+	margin-right: 25px;
+	color: #007bff;
+  }
+
+  .guest-cancel-button {
 	display: inline-block;
 	background-color: #ff5a5f;
 	color: #ffffff;
@@ -153,7 +159,7 @@
 	cursor: pointer;
   }
   
-  .cancel-button:hover {
+  .guest-cancel-button:hover {
 	background-color: #ff767c;
   }
 

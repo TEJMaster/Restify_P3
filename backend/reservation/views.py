@@ -7,7 +7,7 @@ from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Reservation
 from property.models import Property
-from .serializers import ReservationSerializer, ReservationActionSerializer, ReservationApproveDenyCancelSerializer
+from .serializers import ReservationSerializer, ReservationActionSerializer, ReservationApproveDenyCancelSerializer, ReservationListSerializer
 from .filters import ReservationFilter
 from accounts.models import CustomUser
 from django.shortcuts import get_object_or_404
@@ -15,8 +15,22 @@ from rest_framework.exceptions import PermissionDenied
 from notification.models import Notification
 from rest_framework import serializers
 from django.db.models import Q
+from pprint import pprint
 
 from datetime import date
+
+
+# from django.http import JsonResponse
+# from django.core import serializers
+# from .models import Property
+
+# def get_property(request, name):
+#     property_obj = Property.objects.filter(name=name).values('id', 'name', 'owner', 'price', 'image', 'location', 'guests', 'amenities', 'images', 'from_date', 'to_date', 'contact_number', 'email', 'number_of_bedrooms', 'number_of_washrooms', 'owner_first_name', 'owner_last_name')
+#     if property_obj:
+#         data = serializers.serialize('json', property_obj)
+#         return JsonResponse(data, safe=False)
+#     else:
+#         return JsonResponse({"error": "Property not found"}, status=404)
 
 class ReservationPagination(PageNumberPagination):
     page_size = 3
@@ -24,7 +38,7 @@ class ReservationPagination(PageNumberPagination):
     max_page_size = 1000
 
 class ReservationViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = ReservationSerializer
+    serializer_class = ReservationListSerializer
     pagination_class = ReservationPagination
     filter_backends = [DjangoFilterBackend]
     filterset_class = ReservationFilter
