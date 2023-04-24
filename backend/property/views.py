@@ -73,7 +73,29 @@ class PropertyUpdateAPIView(UpdateAPIView):
         property_instance = self.get_object()
         if self.request.user != property_instance.owner:
             raise PermissionDenied("You can only update your own properties.")
+
+        # Save the property instance
         serializer.save()
+
+        # Delete old images
+        PropertyImage.objects.filter(property=property_instance).delete()
+
+        # Handle image upload
+        if self.request.FILES.getlist('images'):
+            for image in self.request.FILES.getlist('images'):
+                # Add a timestamp to the original image file name
+                timestamp = int(time.time())
+                image.name = f"{timestamp}_{image.name}"
+                
+                PropertyImage.objects.create(property=property_instance, image=image)
+        else:
+            default_image_path = os.path.join(os.path.dirname(__file__), 'default_images/default_property_image.jpg')
+            image_name = f"{int(time.time())}_default_property_image.jpg"
+            with open(default_image_path, 'rb') as f:
+                content = ContentFile(f.read())
+                new_path = default_storage.save(f'property_images/{image_name}', content)
+                PropertyImage.objects.create(property=property_instance, image=new_path)
+
 
 
 class PropertyListAPIView(ListAPIView):

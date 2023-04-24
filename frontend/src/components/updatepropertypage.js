@@ -117,7 +117,7 @@ const handleImageDelete = async (imageId) => {
       <NavBar />
       <div className="UpdateProperty">
         <h1>Update Property</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} enctype="multipart/form-data">
           <div className="form-group">
             <div className="label-input">
               <label htmlFor="owner_first_name">Owner First Name:</label>
