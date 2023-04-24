@@ -3,7 +3,9 @@ import axios from 'axios';
 import './css/ReservationPage.css';
 import './css/NavBar.css';
 import NavBar from './navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+
 
 
 const ReservationPage = () => {
@@ -27,6 +29,8 @@ const ReservationPage = () => {
       setSelectedState(e.target.value);
     }
     
+    const navigate = useNavigate();
+
 
     useEffect(() => {
       const fetchReservations = async (page = 1) => {
@@ -357,6 +361,9 @@ const ReservationPage = () => {
               }
             >
               Terminate
+            </button>
+            <button className="guest-comment-button" onClick={() => navigate(`/comment_property/${reservation.property.name}`)}>
+              Comment
             </button>
           </>
         )}
