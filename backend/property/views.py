@@ -66,8 +66,8 @@ class PropertyUpdateAPIView(UpdateAPIView):
         if request.user != property_instance.owner:
             raise PermissionDenied("You can only view your own properties.")
         serializer = self.get_serializer(property_instance)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-        
+        property_data = serializer.data
+        return Response(property_data, status=status.HTTP_200_OK)
     
     def perform_update(self, serializer):
         property_instance = self.get_object()
@@ -164,3 +164,12 @@ class UserPropertiesView(generics.ListAPIView):
         return Property.objects.filter(owner_id=user.id)
 
 
+class PropertyImageDeleteAPIView(DestroyAPIView):
+    queryset = PropertyImage.objects.all()
+    lookup_field = 'id'
+
+    def perform_destroy(self, instance):
+        property_instance = instance.property
+        if self.request.user != property_instance.owner:
+            raise PermissionDenied("You can only delete images of your own properties.")
+        instance.delete()

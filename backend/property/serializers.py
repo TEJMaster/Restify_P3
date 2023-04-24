@@ -4,7 +4,7 @@ from .models import Property, PropertyImage
 class PropertyImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PropertyImage
-        fields = ('image',)
+        fields = ('id', 'image',)
 
 class PropertySerializer(serializers.ModelSerializer):
     price = serializers.DecimalField(required=True, max_digits=6, decimal_places=2)

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './css/HostComment.css';
+import NavBar from './navbar';
 
 const HostCommentPage = () => {
   const [rating, setRating] = useState('');
@@ -44,6 +45,8 @@ const HostCommentPage = () => {
   };
 
   return (
+    <>
+    <NavBar />
     <div className="write-host-review">
       <h3>How was your experience with the user? You can comment here:</h3>
       <form onSubmit={handleSubmit}>
@@ -78,6 +81,7 @@ const HostCommentPage = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 
