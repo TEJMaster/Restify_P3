@@ -98,7 +98,7 @@ const UpdateProperty = () => {
       <form onSubmit={handleSubmit}>
         {/* Render your form fields using the property data */}
         {/* Add other form fields as needed */}
-
+        <div className="input-group">
         <label htmlFor="owner_first_name">Owner First Name:</label>
         <input type="text" id="owner_first_name" name="owner_first_name" defaultValue={property.owner_first_name} required />
 
@@ -161,7 +161,7 @@ const UpdateProperty = () => {
 
         <label htmlFor="price">Price:</label>
         <input type="number" id="price" name="price" defaultValue={property.price} required />
-
+        </div>
         <button type="button" onClick={handleCancel}>
           Cancel
         </button>
