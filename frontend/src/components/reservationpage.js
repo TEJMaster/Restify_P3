@@ -24,6 +24,8 @@ const ReservationPage = () => {
 
     const [hostReservations, setHostReservations] = useState([]);
 
+    
+
 
     function handleStateFilterChange(e) {
       setSelectedState(e.target.value);
@@ -242,50 +244,62 @@ const ReservationPage = () => {
         <h2>Your stays</h2>
         
         {reservations.map((reservation) => (
-      <div key={reservation.id} className="stay">
-        <img src={reservation.property.images[0].image} alt={reservation.property.name} className="stay-image" />
+  <div key={reservation.id} className="stay">
+    <img alt={reservation.property.name} className="stay-image" />
 
+    <div className="stay-details">
+      <h3>{reservation.property.name}</h3>
+      <p>
+        Date: {reservation.from_date} - {reservation.to_date}
+      </p>
+      <p>
+        Price: {reservation.property.price}
+      </p>
+    </div>
+    <div className="button-state-container">
+      {reservation.state === "Pending" && (
+        <>
+          <button
+            className="guest-cancel-button"
+            onClick={() =>
+              handleCancelClick(reservation.id, reservation.property.id)
+            }
+          >
+            Cancel
+          </button>
+        </>
+      )}
+      {reservation.state === "Terminated" && (
+        <button
+          className="guest-comment-button"
+          onClick={() =>
+            navigate(`/comment_property/${reservation.property.name}`)
+          }
+        >
+          Comment
+        </button>
+      )}
+      <p className="reservation-state">{reservation.state}</p>
+    </div>
 
-        <div className="stay-details">
-          <h3>{reservation.property.name}</h3>
-          <p>
-            Date: {reservation.from_date} - {reservation.to_date}
-          </p>
-          <p>
-            Price: {reservation.property.price}
-          </p>
-        </div>
-          <div className="button-state-container">
-          
+    {showConfirmation && (
+      <ConfirmPopup
+        reservationId={reservationIdToCancel}
+        message="Are you sure you want to cancel this reservation?"
+        onYes={handleCancelConfirmation}
+        onClose={() => setShowConfirmation(false)}
+      />
+    )}
 
-          {reservation.state === "Pending" && (
-          <>
-            <button className="guest-cancel-button" onClick={() => handleCancelClick(reservation.id, reservation.property.id)}>Cancel</button>
-          </>
-        )}
-            <p className="reservation-state">{reservation.state}</p>
-          </div>
+    {showCancellationSubmitted && (
+      <FinishPopup
+        message="Your cancellation request has been submitted, please wait for the property owner to confirm."
+        onClose={confirmcancelmsg}
+      />
+    )}
+  </div>
+))}
 
-          
-
-        {showConfirmation && (
-            <ConfirmPopup
-            reservationId={reservationIdToCancel}
-            message="Are you sure you want to cancel this reservation?"
-            onYes={handleCancelConfirmation}
-            onClose={() => setShowConfirmation(false)}
-          />
-        )}
-
-        {showCancellationSubmitted && (
-          <FinishPopup
-          message="Your cancellation request has been submitted, please wait for the property owner to confirm."
-          onClose={confirmcancelmsg}
-          />
-        )}
-      </div>
-      
-      ))}
 
         </section>
       
@@ -294,7 +308,6 @@ const ReservationPage = () => {
   {hostReservations.map((reservation) => (
     <div key={reservation.id} className="stay">
       <img
-        src={reservation.property.images[0].image}
         alt={reservation.property.name}
         className="stay-image"
       />
@@ -361,9 +374,6 @@ const ReservationPage = () => {
               }
             >
               Terminate
-            </button>
-            <button className="guest-comment-button" onClick={() => navigate(`/comment_property/${reservation.property.name}`)}>
-              Comment
             </button>
           </>
         )}

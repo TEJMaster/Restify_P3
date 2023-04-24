@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams} from 'react-router-dom';
 import './css/PropertyComment.css';
 
-const PropertyCommentPage = ({ propertyName }) => {
+
+const PropertyCommentPage = () => {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
+  const { propertyName } = useParams();
+  const [propertyId, setPropertyId] = useState(null);
+
+  console.log('propertyName:', propertyName);
+
 
   const handleRatingChange = (e) => {
     setRating(e.target.value);
@@ -16,6 +22,22 @@ const PropertyCommentPage = ({ propertyName }) => {
   };
 
   const navigate = useNavigate();
+  
+  const fetchPropertyDetails = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8000/property/${propertyName}`);
+      if (response.status === 200) {
+        setPropertyId(response.data.id);
+      }
+    } catch (error) {
+      console.error('Error fetching property details:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPropertyDetails();
+  }, []);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,17 +47,18 @@ const PropertyCommentPage = ({ propertyName }) => {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        `http://localhost:8000/comments/comment/property/${propertyName}`,
+        `http://localhost:8000/comments/comment/property/${propertyId}`,
         {
           rate: rating,
           content: review,
         },
         { headers }
       );
+      
 
       if (response.status === 201) {
         // Navigate the user to the desired page after successful submission
-        navigate('/some-page');
+        navigate('/reservation');
       }
     } catch (error) {
       console.error('Error submitting the comment:', error);

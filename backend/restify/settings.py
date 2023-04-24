@@ -183,3 +183,7 @@ CORS_ALLOW_HEADERS = [
     'x-refresh-token',
     'authorization',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
