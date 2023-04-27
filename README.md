@@ -67,5 +67,8 @@ On Restify, reservations to a rental property may be in one of the following sta
 
 To set up the project on a new machine, follow these steps:
 
-1. Run `startup.sh` to create a new virtual environment for the project and install all required packages.
-2. Run `run.sh` to start both the frontend and backend servers.
+1. Open a new Bash terminal on the root directory.
+2. Run `sh startup.sh` to create a new virtual environment for the project and install all required packages.
+3. Run `sh run.sh` to start both the frontend and backend servers.
+4. To terminate both frontend and backend servers, run `sh terminate.sh` to kill both servers
+5. Run `sh cleanup.sh` to clean all files and data in the database.
