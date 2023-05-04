@@ -27,8 +27,8 @@ const ProfilePage = () => {
       try {
         const token = localStorage.getItem('access_token');
         const headers = { Authorization: `Bearer ${token}` };
-        const response = await axios.get('http://localhost:8000/account/profile/', { headers });
-        const userProfile = { ...response.data, avatar: `http://localhost:8000${response.data.avatar}` };
+        const response = await axios.get('{BASE_URL}/account/profile/', { headers });
+        const userProfile = { ...response.data, avatar: `{BASE_URL}${response.data.avatar}` };
         setProfile(userProfile);
         setEditableFields({
           first_name: userProfile.first_name,
@@ -56,8 +56,8 @@ const ProfilePage = () => {
       try {
         const token = localStorage.getItem('access_token');
         const headers = { Authorization: `Bearer ${token}` };
-        const response = await axios.put('http://localhost:8000/account/profile/', editableFields, { headers });
-        const updatedProfile = { ...profile, ...response.data, avatar: `http://localhost:8000${response.data.avatar}` };
+        const response = await axios.put('{BASE_URL}/account/profile/', editableFields, { headers });
+        const updatedProfile = { ...profile, ...response.data, avatar: `{BASE_URL}${response.data.avatar}` };
         setProfile(updatedProfile);
       } catch (error) {
         console.error('Error updating user profile:', error);
@@ -80,8 +80,8 @@ const ProfilePage = () => {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
       };
-      const response = await axios.put('http://localhost:8000/account/profile/', formData, { headers });
-      const updatedProfile = { ...profile, avatar: `http://localhost:8000${response.data.avatar}` };
+      const response = await axios.put('{BASE_URL}/account/profile/', formData, { headers });
+      const updatedProfile = { ...profile, avatar: `{BASE_URL}${response.data.avatar}` };
       setProfile(updatedProfile);
     } catch (error) {
       console.error('Error uploading avatar:', error);

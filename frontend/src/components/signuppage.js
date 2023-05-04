@@ -71,7 +71,7 @@ const SignUpPage = () => {
       console.log("Submitting form data:", formData);
     
       try {
-        const response = await fetch('http://localhost:8000/account/signup/', {
+        const response = await fetch('{BASE_URL}/account/signup/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

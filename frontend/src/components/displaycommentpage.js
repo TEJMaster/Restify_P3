@@ -18,7 +18,7 @@ const DisplayCommentsPage = () => {
         const headers = { Authorization: `Bearer ${token}` };
 
         const response = await axios.get(
-          `http://localhost:8000/comments/view/user/${target_username}?page=${page}`,
+          `{BASE_URL}/comments/view/user/${target_username}?page=${page}`,
           { headers } // Pass the headers object with the request
         );
 

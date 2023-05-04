@@ -16,7 +16,7 @@ const UpdateProperty = () => {
   }, []);
 
   const fetchProperty = async () => {
-    const response = await fetch(`http://localhost:8000/property/update/${name}/`, {
+    const response = await fetch(`{BASE_URL}/property/update/${name}/`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
@@ -34,7 +34,7 @@ const UpdateProperty = () => {
 
 const handleImageDelete = async (imageId) => {
     try {
-      const response = await fetch(`http://localhost:8000/property/image/${imageId}/delete/`, {
+      const response = await fetch(`{BASE_URL}/property/image/${imageId}/delete/`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
@@ -58,7 +58,7 @@ const handleImageDelete = async (imageId) => {
     const authToken = localStorage.getItem('access_token');
 
     try {
-      const response = await fetch(`http://localhost:8000/property/update/${name}/`, {
+      const response = await fetch(`{BASE_URL}/property/update/${name}/`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${authToken}`,

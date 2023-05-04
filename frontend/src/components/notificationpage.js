@@ -9,7 +9,7 @@ const NotificationPage = () => {
   const [nextPage, setNextPage] = useState(null);
   const [previousPage, setPreviousPage] = useState(null);
 
-  const fetchNotifications = async (url = 'http://localhost:8000/notifications/view/') => {
+  const fetchNotifications = async (url = '{BASE_URL}/notifications/view/') => {
     try {
       const token = localStorage.getItem('access_token');
       const headers = { Authorization: `Bearer ${token}` };
@@ -31,7 +31,7 @@ const NotificationPage = () => {
     try {
       const token = localStorage.getItem('access_token');
       const headers = { Authorization: `Bearer ${token}` };
-      await axios.delete('http://localhost:8000/notifications/clear/', { headers });
+      await axios.delete('{BASE_URL}/notifications/clear/', { headers });
 
       fetchNotifications();
     } catch (error) {

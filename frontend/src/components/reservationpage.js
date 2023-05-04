@@ -104,7 +104,7 @@ const ReservationPage = () => {
       
 
     useEffect(() => {
-        const initialUrl = "http://localhost:8000/reservation/";
+        const initialUrl = "{BASE_URL}/reservation/";
         fetchReservations(initialUrl);
         fetchHostReservations(initialUrl);
       }, [selectedState, fetchReservations, fetchHostReservations]);
@@ -140,7 +140,7 @@ const ReservationPage = () => {
       try {
         const token = localStorage.getItem('access_token');
         const headers = { Authorization: `Bearer ${token}` };
-        const response = await axios.put(`http://localhost:8000/reservation/cancel/${reservationId}/`, { property: propertyIdToCancel }, { headers });
+        const response = await axios.put(`{BASE_URL}/reservation/cancel/${reservationId}/`, { property: propertyIdToCancel }, { headers });
     
         if (response.status === 200) {
           setShowConfirmation(false);
@@ -211,7 +211,7 @@ const ReservationPage = () => {
         const token = localStorage.getItem("access_token");
         const headers = { Authorization: `Bearer ${token}` };
         await axios.put(
-          `http://localhost:8000/reservation/approve-deny-cancel/${reservationId}/`,
+          `{BASE_URL}/reservation/approve-deny-cancel/${reservationId}/`,
           { action },
           { headers }
         );

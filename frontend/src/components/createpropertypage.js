@@ -2,6 +2,8 @@ import React, { useRef }from 'react';
 import NavBar from './navbar';
 import './css/CreatePropertyPage.css';
 import { useNavigate } from 'react-router-dom';
+import BASE_URL from './config';
+
 
 const CreatePropertyPage = () => {
     const navigate = useNavigate();
@@ -15,7 +17,7 @@ const CreatePropertyPage = () => {
     const authToken = localStorage.getItem('access_token');
 
     try {
-      const response = await fetch('http://localhost:8000/property/create/', {
+      const response = await fetch('{BASE_URL}/property/create/', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${authToken}` // Add the Authorization header with the token
@@ -52,7 +54,7 @@ const CreatePropertyPage = () => {
     // Simulated API call to check if the property name is unique
     const checkUniquePropertyName = async (propertyName) => {
       // Replace this with a real API call to your backend
-      const response = await fetch(`http://localhost:8000/property/check_unique_name/${propertyName}/`);
+      const response = await fetch(`{BASE_URL}/property/check_unique_name/${propertyName}/`);
       if (response.ok) {
         const data = await response.json();
         return data.is_unique;

@@ -30,7 +30,7 @@ const LoggedMainPage = () => {
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    await fetchSearchResults(`http://localhost:8000/property/search/?${new URLSearchParams(searchParams).toString()}`);
+    await fetchSearchResults(`{BASE_URL}/property/search/?${new URLSearchParams(searchParams).toString()}`);
     console.log(searchResults);
   };
 

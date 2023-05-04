@@ -15,7 +15,7 @@ const MyPropertyPage = () => {
 
 
   const fetchProperties = async () => {
-    const response = await fetch('http://localhost:8000/property/my_property/', {
+    const response = await fetch('{BASE_URL}/property/my_property/', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
@@ -40,7 +40,7 @@ const MyPropertyPage = () => {
     const confirmed = window.confirm("Are you sure you want to delete this property? This action cannot be undone.");
   
     if (confirmed) {
-      const response = await fetch(`http://localhost:8000/property/delete/${propertyName}/`, {
+      const response = await fetch(`{BASE_URL}/property/delete/${propertyName}/`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`,

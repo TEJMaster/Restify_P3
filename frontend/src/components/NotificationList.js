@@ -9,7 +9,7 @@ const NotificationList = () => {
     const fetchNotifications = async () => {
       try {
         const headers = { Authorization: `Bearer ${localStorage.getItem('access_token')}` };
-        const response = await axios.get('http://localhost:8000/notifications/view/', { headers });
+        const response = await axios.get('{BASE_URL}/notifications/view/', { headers });
         console.log(response.data); // Add this line to inspect the response data
         setNotifications(response.data.notifications);
       } catch (error) {

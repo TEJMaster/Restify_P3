@@ -23,8 +23,8 @@ const NavBar = () => {
       try {
         const token = localStorage.getItem('access_token');
         const headers = { Authorization: `Bearer ${token}` };
-        const response = await axios.get('http://localhost:8000/account/profile/', { headers });
-        setUserAvatar(`http://localhost:8000${response.data.avatar}`);
+        const response = await axios.get('{BASE_URL}/account/profile/', { headers });
+        setUserAvatar(`{BASE_URL}${response.data.avatar}`);
         setUserName(response.data.username);
       } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -52,7 +52,7 @@ const NavBar = () => {
         'X-Refresh-Token': refreshToken,
       };
   
-      await axios.post('http://localhost:8000/account/logout/', {}, {
+      await axios.post('{BASE_URL}/account/logout/', {}, {
         withCredentials: true,
         headers,
       });

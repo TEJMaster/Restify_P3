@@ -28,7 +28,7 @@ const HostCommentPage = () => {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        `http://localhost:8000/comments/comment/user/${targetuserid}`,
+        `{BASE_URL}/comments/comment/user/${targetuserid}`,
         {
           rate: rating,
           content: review,

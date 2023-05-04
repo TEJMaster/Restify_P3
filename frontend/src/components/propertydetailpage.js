@@ -29,7 +29,7 @@ const PropertyDetail = (props) => {
   }, [property, currentPage]);
 
   const fetchProperty = async (name) => {
-    const response = await fetch(`http://localhost:8000/property/${name}/`);
+    const response = await fetch(`{BASE_URL}/property/${name}/`);
     if (response.ok) {
       const data = await response.json();
       console.log('Property data:', data);
@@ -41,7 +41,7 @@ const PropertyDetail = (props) => {
 
   const fetchComments = async (propertyId, page) => {
     try {
-      const response = await axios.get(`http://localhost:8000/comments/view/property/${propertyId}?page=${page}`);
+      const response = await axios.get(`{BASE_URL}/comments/view/property/${propertyId}?page=${page}`);
       if (response.status === 200) {
         console.log('Response data:', response.data);
         setComments(response.data.results);
@@ -88,7 +88,7 @@ const PropertyDetail = (props) => {
     };
     console.log('Sending reservationData:', reservationData);
     try {
-      const response = await fetch('http://localhost:8000/reservation/reserve/', {
+      const response = await fetch('{BASE_URL}/reservation/reserve/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

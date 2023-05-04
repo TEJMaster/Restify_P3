@@ -15,7 +15,7 @@ function LoginPage({ setAuthStatus }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/account/login/', {
+      const response = await axios.post('{BASE_URL}/account/login/', {
         username: username,
         password: password,
       });

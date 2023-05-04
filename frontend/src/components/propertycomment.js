@@ -30,7 +30,7 @@ const PropertyCommentPage = () => {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        `http://localhost:8000/comments/comment/property/${propertyId}`,
+        `{BASE_URL}/comments/comment/property/${propertyId}`,
         {
           rate: rating,
           content: review,
