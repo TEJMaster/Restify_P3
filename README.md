@@ -1,6 +1,6 @@
 # Restify P3 Implementation
 
-We have implemented a React frontend for Restify and connected it to the backend server. The result is a fully-functional, shippable, and visually appealing website that offers a smooth user experience and is easy to understand.
+We have implemented a React frontend for Restify and connected it to the backend server for CSC309. The result is a fully-functional, shippable, and visually appealing website that offers a smooth user experience and is easy to understand.
 
 ## Discriptions
 Restify is an online marketplace where users can search, book, comment and rate short term lodging experiences. Moreover, property owners can create listings for their rental units (e.g., room, house, etc) and accept reservations from users. More details will follow in upcoming sections. Features are explained in terms of user stories, in a non-technical form, and from an imaginary user's point of view. You should not expect the same level of detail as assignments. Details that are not discussed below are left out to you, and you get to design them. Your final grading will be done mostly based on the overall functionality of your website as if the stakeholder is testing your application.
